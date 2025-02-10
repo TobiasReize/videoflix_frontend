@@ -1,0 +1,42 @@
+@use 'color';
+@use 'typography';
+
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 40px;
+    border: unset;
+    @extend .font-style-5;
+}
+
+.btn-prim {
+    @extend .btn;
+    background-color: color.$main-color;
+}
+
+.btn-sec {
+    @extend .btn;
+    background-color: color.$main-color;
+    opacity: 0.5;
+}
+
+.btn-ter {
+    @extend .btn;
+    background-color: white;
+    color: color.$main-color;
+}
+
+.input-style-prim {
+    border: 1px solid white;
+    border-radius: 40px;
+    padding: 12px 24px;
+    @extend .font-style-3;
+}
+
+.input-style-sec {
+    border: 1px solid color.$main-color;
+    border-radius: 12px;
+    padding: 12px 24px;
+    @extend .font-style-3;
+    color: color.$main-color;
+}
