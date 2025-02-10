@@ -1,0 +1,26 @@
+@mixin dFlex($fd: row, $jc: center, $ai: center) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+.dF-row-cc {
+    @include dFlex();
+}
+
+.dF-jc-space-between {
+    @include dFlex($jc: space-between);
+}
+
+.dF-jc-flex-start {
+    @include dFlex($jc: flex-start);
+}
+
+.dF-flex-start {
+    @include dFlex($jc: flex-start, $ai: flex-start);
+}
+
+.dF-column-cc {
+    @include dFlex($fd: column);
+}
