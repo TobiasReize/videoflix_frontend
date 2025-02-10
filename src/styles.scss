@@ -1,8 +1,12 @@
+@use 'styles/typography';
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
+    @extend .font-style-0;
     color: white;
 }
 
@@ -20,6 +24,14 @@ a {
     cursor: pointer;
 }
 
-// h1 {
+h1 {
+    @extend .font-style-10
+}
 
-// }
+h2 {
+    @extend .font-style-9
+}
+
+h3 {
+    @extend .font-style-8
+}
