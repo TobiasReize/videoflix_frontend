@@ -1,0 +1,17 @@
+@use '../../../styles/color';
+@use '../../../styles/layout';
+
+.content {
+    @extend .dF-jc-flex-start;
+    width: 540px;
+    height: 80px;
+    background-color: color.$main-color;
+    border-radius: 20px;
+}
+
+.rectangle-red {
+    background-color: color.$error-red;
+    width: 22px;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+}
