@@ -6,4 +6,6 @@
         <input class="btn-prim" type="submit" name="submit" value="Sign Up >">
     </form>
 </div>
-<app-toast-error></app-toast-error>
+@if (toastErrorSerivce.toastError()) {
+    <app-toast-error></app-toast-error>
+}

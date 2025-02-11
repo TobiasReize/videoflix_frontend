@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
+import { ToastErrorService } from '../../services/toast-error.service';
 
 @Component({
   selector: 'app-startpage',
@@ -12,7 +13,9 @@ import { ToastErrorComponent } from '../../shared/toast-error/toast-error.compon
 })
 export class StartpageComponent {
 
+  toastErrorSerivce = inject(ToastErrorService);
   signUpEmail: string = '';
+
 
   async onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
@@ -21,7 +24,7 @@ export class StartpageComponent {
       ngForm.resetForm();
     } else {
       console.log('Fehler!!!');
-      
+      this.toastErrorSerivce.setToastError();
     }
   }
 

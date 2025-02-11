@@ -1,4 +1,5 @@
 @use '../../../styles/layout';
+@use '../../../styles/animation';
 
 :host {
     @extend .dF-row-cc;
@@ -24,4 +25,11 @@
 .input-container {
     @extend .dF-row-cc;
     gap: 16px;
+}
+
+app-toast-error {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    @extend .fade-in;
 }
