@@ -1,0 +1,27 @@
+@use '../../../styles/layout';
+
+
+:host {
+    @extend .dF-row-cc;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url('../../../assets/img/startpage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+    @extend .dF-column-cc;
+}
+
+.description {
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.input-container {
+    @extend .dF-row-cc;
+    gap: 16px;
+}
