@@ -9,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class ToastErrorComponent {
 
+  msg: string = 'Test Test Test Testtext'
+
 }

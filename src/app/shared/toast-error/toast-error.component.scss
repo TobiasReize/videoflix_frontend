@@ -7,6 +7,7 @@
     height: 80px;
     background-color: color.$main-color;
     border-radius: 20px;
+    padding-right: 32px;
 }
 
 .rectangle-red {
@@ -14,4 +15,21 @@
     width: 22px;
     height: 100%;
     border-radius: 20px 0 0 20px;
+}
+
+.inner-content {
+    @extend .dF-jc-flex-start;
+    flex: 1;
+    gap: 16px;
+    margin-left: 10px;
+
+    > p {
+        flex: 1;
+    }
+}
+
+.separator {
+    width: 1px;
+    height: 32px;
+    background-color: white;
 }
