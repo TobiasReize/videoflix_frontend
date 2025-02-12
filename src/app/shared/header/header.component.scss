@@ -21,6 +21,7 @@
     cursor: pointer;
     
     path {
+        transition: all 150ms ease-in-out;
         fill: color.$logo-purple
     }
 }
