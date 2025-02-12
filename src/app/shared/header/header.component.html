@@ -10,9 +10,13 @@
             </g>
         </svg>
     </div>
+} @else if (type == 'login') {
+    <div class="content">
+        <img src="img/logo-text.png" alt="logo">
+    </div>
 } @else {
     <div class="content">
         <img src="img/logo-text.png" alt="logo">
-        <button routerLink="/#" class="btn-prim">Log In</button>
+        <button routerLink="/login" class="btn-prim">Log In</button>
     </div>
 }

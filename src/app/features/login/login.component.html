@@ -1,0 +1,24 @@
+<app-header [type]="'login'"></app-header>
+
+<form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="content">
+    <h2>Log in</h2>
+    <div class="input-style-sec">
+        <input type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
+    </div>
+    <div class="input-style-sec password-container">
+        <input type="password" name="password" placeholder="Password" required>
+        <img src="icon/visibility.png" alt="visibility">
+    </div>
+    <div class="remember-me">
+        <img src="#" alt="#">
+        <span>Remember me</span>
+    </div>
+    <input class="btn-prim" type="submit" name="submit" value="Log in">
+    <a href="#">Forgot password?</a>
+    <div>
+        <span>New to Videoflix?</span>
+        <a href="#">Sign up now</a>
+    </div>
+</form>
+
+<app-footer></app-footer>

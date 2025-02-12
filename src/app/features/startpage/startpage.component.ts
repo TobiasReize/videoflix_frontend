@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
@@ -9,7 +8,7 @@ import { FooterComponent } from '../../shared/footer/footer.component';
 @Component({
   selector: 'app-startpage',
   standalone: true,
-  imports: [CommonModule, FormsModule, ToastErrorComponent, HeaderComponent, FooterComponent],
+  imports: [FormsModule, ToastErrorComponent, HeaderComponent, FooterComponent],
   templateUrl: './startpage.component.html',
   styleUrl: './startpage.component.scss'
 })
@@ -19,7 +18,8 @@ export class StartpageComponent {
   signUpEmail: string = '';
   toastErrorMsg: string = '';
 
-  async onSubmit(ngForm: NgForm) {
+  
+  onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
       // tbd.
       this.toastErrorSerivce.resetToastError();

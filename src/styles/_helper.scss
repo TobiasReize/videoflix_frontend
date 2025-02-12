@@ -11,7 +11,7 @@
 .btn-prim {
     @extend .btn;
     background-color: color.$main-color;
-    transition: background-color 200ms ease-in-out;
+    transition: background-color 150ms ease-in-out;
 
     &:hover {
         background-color: color.$logo-purple;
@@ -57,10 +57,22 @@
 }
 
 .input-style-sec {
+    width: 100%;
     border: 1px solid color.$main-color;
     background-color: white;
     border-radius: 12px;
     padding: 12px 24px;
-    @extend .font-style-3;
     color: color.$main-color;
+
+    > input {
+        @extend .font-style-3;
+        color: color.$main-color;
+        border: unset;
+        outline: unset;
+
+        &::placeholder {
+            @extend .font-style-3;
+            color: color.$main-color;
+        }
+    }
 }

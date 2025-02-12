@@ -1,0 +1,51 @@
+@use '../../../styles/layout';
+@use '../../../styles/animation';
+@use '../../../styles/color';
+
+:host {
+    @extend .dF-row-cc;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url('../../../../public/img/background_1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.content {
+    @extend .dF-column-cc;
+    background-color: white;
+    border-radius: 48px;
+    padding: 43px 56px;
+    width: 520px;
+}
+
+h2 {
+    color: color.$main-color;
+}
+
+.input-style-sec {
+    margin-top: 32px;
+}
+
+.password-container {
+    @extend .dF-row-cc;
+    gap: 16px;
+
+    > input {
+        flex: 1;
+    }
+}
+
+.remember-me {
+    @extend .dF-jc-flex-start;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 32px;
+
+    > span {
+        color: black;
+    }
+}
