@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { StartpageComponent } from './features/startpage/startpage.component';
+import { ImprintComponent } from './features/imprint/imprint.component';
+import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy.component';
 
 
 export const routes: Routes = [
@@ -9,6 +11,6 @@ export const routes: Routes = [
     // { path: 'forgot-password', },
     // { path: 'reset-password', },
     // { path: 'video-offer', },
-    // { path: 'imprint', },
-    // { path: 'privacy-policy', },
+    { path: 'imprint', component: ImprintComponent},
+    { path: 'privacy-policy', component: PrivacyPolicyComponent},
 ];
