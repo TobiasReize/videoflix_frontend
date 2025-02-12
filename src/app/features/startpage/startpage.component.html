@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="content">
     <h2>Movies, TV shows, and more</h2>
     <p class="description">Enter your E-mail to create or restart your subscription.</p>
@@ -6,6 +8,9 @@
         <input class="btn-prim" type="submit" name="submit" value="Sign Up >">
     </form>
 </div>
+
 @if (toastErrorSerivce.toastError()) {
     <app-toast-error [msg]="toastErrorMsg"></app-toast-error>
 }
+
+<app-footer></app-footer>

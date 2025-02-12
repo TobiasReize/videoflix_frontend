@@ -3,11 +3,13 @@ import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
 import { ToastErrorService } from '../../services/toast-error.service';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-startpage',
   standalone: true,
-  imports: [CommonModule, FormsModule, ToastErrorComponent],
+  imports: [CommonModule, FormsModule, ToastErrorComponent, HeaderComponent, FooterComponent],
   templateUrl: './startpage.component.html',
   styleUrl: './startpage.component.scss'
 })
