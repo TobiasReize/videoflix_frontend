@@ -15,16 +15,21 @@ export class StartpageComponent {
 
   toastErrorSerivce = inject(ToastErrorService);
   signUpEmail: string = '';
-
+  toastErrorMsg: string = '';
 
   async onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
       // tbd.
+      this.toastErrorSerivce.resetToastError();
       console.log('signUpEmail:', this.signUpEmail);
       ngForm.resetForm();
     } else {
       console.log('Fehler!!!');
-      this.toastErrorSerivce.setToastError();
+      this.toastErrorMsg = 'Please enter a valid E-mail address';
+      this.toastErrorSerivce.resetToastError();
+      setTimeout(() => {
+        this.toastErrorSerivce.setToastError();
+      }, 100);
     }
   }
 

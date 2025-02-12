@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { ToastErrorService } from '../../services/toast-error.service';
 
 @Component({
   selector: 'app-toast-error',
@@ -9,6 +10,12 @@ import { Component } from '@angular/core';
 })
 export class ToastErrorComponent {
 
-  msg: string = 'Test Test Test Testtext'
+  toastErrorSerivce = inject(ToastErrorService);
+  @Input() msg: string = ''
+
+
+  removeToastError() {
+    this.toastErrorSerivce.resetToastError();
+  }
 
 }
