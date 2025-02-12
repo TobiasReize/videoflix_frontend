@@ -31,5 +31,6 @@ app-toast-error {
     position: absolute;
     bottom: 80px;
     left: 0;
+    z-index: 5;
     @extend .fade-in;
 }
