@@ -1,6 +1,7 @@
 @use '../../../styles/layout';
 @use '../../../styles/animation';
 @use '../../../styles/color';
+@use '../../../styles/typography';
 
 :host {
     @extend .dF-row-cc;
@@ -31,15 +32,14 @@ h2 {
 }
 
 .password-container {
-    @extend .dF-row-cc;
     gap: 16px;
 
-    > input {
-        flex: 1;
+    > img {
+        cursor: pointer;
     }
 }
 
-.remember-me {
+.remember-me-container {
     @extend .dF-jc-flex-start;
     width: 100%;
     margin-top: 16px;
@@ -47,5 +47,67 @@ h2 {
 
     > span {
         color: black;
+    }
+}
+
+.custom-checkbox {
+    @extend .dF-row-cc;
+    cursor: pointer;
+
+    > input {
+        display: none;
+    }
+
+    > span {
+        width: 12px;
+        height: 12px;
+        border: 1px solid color.$main-color;
+        border-radius: 3px;
+        display: inline-block;
+        position: relative;
+        margin-right: 6px;
+    }
+}
+
+.custom-checkbox input:checked + span::after {
+    content: '✔';
+    font-size: 14px;
+    color: color.$main-color;
+    text-align: center;
+    line-height: 1;
+    position: absolute;
+    left: -1px;
+    top: -2px;
+    width: 12px;
+    height: 12px;
+}
+
+.forgot-password {
+    @extend .font-style-5;
+    color: color.$main-color;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    &:hover {
+        color: color.$logo-purple;
+    }
+}
+
+.signup-container {
+    @extend .dF-row-cc;
+    gap: 24px;
+
+    > span {
+        @extend .font-style-4;
+        color: black;
+    }
+
+    > a {
+        @extend .font-style-5;
+        color: color.$main-color;
+
+        &:hover {
+            color: color.$logo-purple;
+        }
     }
 }

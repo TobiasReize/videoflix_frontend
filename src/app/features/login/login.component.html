@@ -3,21 +3,24 @@
 <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="content">
     <h2>Log in</h2>
     <div class="input-style-sec">
-        <input type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
+        <input [(ngModel)]="loginData.email" #email="ngModel" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
     </div>
     <div class="input-style-sec password-container">
-        <input type="password" name="password" placeholder="Password" required>
-        <img src="icon/visibility.png" alt="visibility">
+        <input [(ngModel)]="loginData.password" #password="ngModel" [type]="isPasswordVisible ? 'text' : 'password'" name="password" placeholder="Password" minlength="6" required>
+        <img (mousedown)="showPassword(true)" (mouseup)="showPassword(false)" (mouseleave)="showPassword(false)" [src]="isPasswordVisible ? 'icon/visibility.png' : 'icon/visibility-off.png'" alt="visibility">
     </div>
-    <div class="remember-me">
-        <img src="#" alt="#">
+    <div class="remember-me-container">
+        <label class="custom-checkbox">
+            <input type="checkbox">
+            <span></span>
+        </label>
         <span>Remember me</span>
     </div>
-    <input class="btn-prim" type="submit" name="submit" value="Log in">
-    <a href="#">Forgot password?</a>
-    <div>
+    <input [disabled]="!email.valid || !password.valid" class="btn-prim" type="submit" name="submit" value="Log in">
+    <a class="forgot-password" routerLink="/">Forgot password?</a>
+    <div class="signup-container">
         <span>New to Videoflix?</span>
-        <a href="#">Sign up now</a>
+        <a routerLink="/">Sign up now</a>
     </div>
 </form>
 

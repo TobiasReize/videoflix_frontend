@@ -1,5 +1,6 @@
 @use 'color';
 @use 'typography';
+@use 'layout';
 
 .btn {
     padding: 12px 24px;
@@ -63,12 +64,14 @@
     border-radius: 12px;
     padding: 12px 24px;
     color: color.$main-color;
+    @extend .dF-row-cc;
 
     > input {
         @extend .font-style-3;
         color: color.$main-color;
         border: unset;
         outline: unset;
+        flex: 1;
 
         &::placeholder {
             @extend .font-style-3;
