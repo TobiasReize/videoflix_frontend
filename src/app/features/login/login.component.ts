@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
@@ -15,14 +15,10 @@ import { ToastErrorService } from '../../services/toast-error.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginData = {
-    email: '',
-    password: ''
-  }
   isPasswordVisible: boolean = false;
   toastErrorMsg: string = '';
   toastErrorSerivce = inject(ToastErrorService);
-
+  @ViewChild('checkbox') checkbox!: ElementRef;
 
   ngOnInit(): void {
     this.toastErrorSerivce.resetToastError();
@@ -41,9 +37,9 @@ export class LoginComponent implements OnInit {
   onSubmit(ngForm: NgForm) {
       if (ngForm.submitted && ngForm.form.valid) {
         // tbd.
-        console.log('Erfolgreich!');
+        console.log('Form:', ngForm.form.value);
         this.toastErrorSerivce.resetToastError();
-        ngForm.resetForm();
+        this.emptyForm(ngForm);
       } else {
         console.log('Fehler!!!');
         this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
@@ -51,8 +47,14 @@ export class LoginComponent implements OnInit {
         setTimeout(() => {
           this.toastErrorSerivce.setToastError();
         }, 100);
-        ngForm.resetForm();
+        this.emptyForm(ngForm);
       }
+  }
+
+
+  emptyForm(ngForm: NgForm) {
+    ngForm.resetForm();    
+    this.checkbox.nativeElement.checked = false;
   }
 
 }

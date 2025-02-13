@@ -3,15 +3,15 @@
 <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="content">
     <h2>Log in</h2>
     <div class="input-style-sec">
-        <input [(ngModel)]="loginData.email" #email="ngModel" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
+        <input #email="ngModel" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required ngModel>
     </div>
     <div class="input-style-sec password-container">
-        <input [(ngModel)]="loginData.password" #password="ngModel" [type]="isPasswordVisible ? 'text' : 'password'" name="password" placeholder="Password" minlength="6" required>
+        <input #password="ngModel" [type]="isPasswordVisible ? 'text' : 'password'" name="password" placeholder="Password" minlength="6" required ngModel>
         <img (mousedown)="showPassword(true)" (mouseup)="showPassword(false)" (mouseleave)="showPassword(false)" [src]="isPasswordVisible ? 'icon/visibility.png' : 'icon/visibility-off.png'" alt="visibility">
     </div>
     <div class="remember-me-container">
         <label class="custom-checkbox">
-            <input type="checkbox">
+            <input type="checkbox" name="checkbox" #checkbox ngModel>
             <span></span>
         </label>
         <span>Remember me</span>
