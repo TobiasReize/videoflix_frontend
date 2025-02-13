@@ -1,5 +1,14 @@
 @use '../../../styles/color';
 @use '../../../styles/layout';
+@use '../../../styles/animation';
+
+:host {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    z-index: 5;
+    @extend .fade-in;
+}
 
 .content {
     @extend .dF-jc-flex-start;
