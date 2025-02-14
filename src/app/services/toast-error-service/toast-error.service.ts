@@ -5,7 +5,7 @@ import { Injectable, signal } from '@angular/core';
 })
 export class ToastErrorService {
 
-  private toastErrorSignal = signal(false);
+  private toastErrorSignal = signal<boolean>(false);
   readonly toastError = this.toastErrorSignal.asReadonly();
 
 

@@ -5,6 +5,7 @@ import { ToastErrorService } from '../../services/toast-error-service/toast-erro
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login-service/login.service';
 
 @Component({
   selector: 'app-startpage',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
 export class StartpageComponent implements OnInit {
 
   toastErrorSerivce = inject(ToastErrorService);
+  loginService = inject(LoginService);
   signUpEmail: string = '';
   toastErrorMsg: string = '';
 
@@ -30,13 +32,14 @@ export class StartpageComponent implements OnInit {
 
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
-      // tbd.
       this.toastErrorSerivce.resetToastError();
+      this.loginService.setSignupEmail(this.signUpEmail);
       console.log('signUpEmail:', this.signUpEmail);
       ngForm.resetForm();
       this.router.navigateByUrl('signup');
     } else {
       console.log('Fehler!!!');
+      this.loginService.setSignupEmail('');
       this.toastErrorMsg = 'Please enter a valid e-mail address';
       this.toastErrorSerivce.resetToastError();
       setTimeout(() => {

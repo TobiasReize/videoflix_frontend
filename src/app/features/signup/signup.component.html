@@ -3,7 +3,7 @@
 <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="content">
     <h2>Sign up</h2>
     <div class="input-style-sec">
-        <input #email="ngModel" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required ngModel>
+        <input #email="ngModel" [ngModel]="loginService.signupEmail()" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required ngModel>
     </div>
     <div class="input-style-sec password-container">
         <input #password="ngModel" [type]="isPasswordVisible ? 'text' : 'password'" name="password" placeholder="Enter a password" minlength="6" required ngModel>

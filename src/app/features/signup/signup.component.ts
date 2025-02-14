@@ -4,6 +4,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
 import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
+import { LoginService } from '../../services/login-service/login.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ import { ToastErrorService } from '../../services/toast-error-service/toast-erro
 export class SignupComponent implements OnInit {
   
   toastErrorSerivce = inject(ToastErrorService);
+  loginService = inject(LoginService);
   toastErrorMsg: string = '';
   isPasswordVisible: boolean = false;
   isPasswordRepeatVisible: boolean = false;
@@ -46,9 +48,11 @@ export class SignupComponent implements OnInit {
     if (ngForm.submitted && ngForm.form.valid) {
       // tbd.
       console.log('Form:', ngForm.form.value);
-      ngForm.resetForm();    
+      this.loginService.setSignupEmail('');
+      ngForm.resetForm();
     } else {
       console.log('Fehler!!!');
+      this.loginService.setSignupEmail('');
       this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
       this.toastErrorSerivce.resetToastError();
       setTimeout(() => {
