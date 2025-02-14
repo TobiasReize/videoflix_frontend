@@ -3,13 +3,13 @@ import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
+import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink, HeaderComponent, FooterComponent, ToastErrorComponent],
+  imports: [FormsModule, RouterLink, HeaderComponent, FooterComponent, ToastMsgComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

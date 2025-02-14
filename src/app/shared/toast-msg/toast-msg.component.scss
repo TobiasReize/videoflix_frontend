@@ -19,11 +19,18 @@
     padding-right: 32px;
 }
 
-.rectangle-red {
-    background-color: color.$error-red;
+.rectangle {
     width: 22px;
     height: 100%;
     border-radius: 20px 0 0 20px;
+}
+
+.red {
+    background-color: color.$error-red;
+}
+
+.green {
+    background-color: color.$ok-green;
 }
 
 .inner-content {

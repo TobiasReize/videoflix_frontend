@@ -25,7 +25,7 @@
 </form>
 
 @if (toastErrorSerivce.toastError()) {
-    <app-toast-error [msg]="toastErrorMsg"></app-toast-error>
+    <app-toast-msg [msg]="toastErrorMsg" [state]="'error'"></app-toast-msg>
 }
 
 <app-footer></app-footer>

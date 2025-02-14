@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
+import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
@@ -10,7 +10,7 @@ import { LoginService } from '../../services/login-service/login.service';
 @Component({
   selector: 'app-startpage',
   standalone: true,
-  imports: [FormsModule, ToastErrorComponent, HeaderComponent, FooterComponent],
+  imports: [FormsModule, ToastMsgComponent, HeaderComponent, FooterComponent],
   templateUrl: './startpage.component.html',
   styleUrl: './startpage.component.scss'
 })

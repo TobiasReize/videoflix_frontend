@@ -2,16 +2,17 @@ import { Component, inject, Input } from '@angular/core';
 import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 
 @Component({
-  selector: 'app-toast-error',
+  selector: 'app-toast-msg',
   standalone: true,
   imports: [],
-  templateUrl: './toast-error.component.html',
-  styleUrl: './toast-error.component.scss'
+  templateUrl: './toast-msg.component.html',
+  styleUrl: './toast-msg.component.scss'
 })
-export class ToastErrorComponent {
+export class ToastMsgComponent {
 
   toastErrorSerivce = inject(ToastErrorService);
-  @Input() msg: string = ''
+  @Input() msg: string = '';
+  @Input() state: 'error' | 'ok' | null = null;
 
 
   removeToastError() {

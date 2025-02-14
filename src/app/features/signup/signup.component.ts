@@ -2,14 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
-import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
+import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 import { LoginService } from '../../services/login-service/login.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, ToastErrorComponent],
+  imports: [HeaderComponent, FooterComponent, FormsModule, ToastMsgComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
