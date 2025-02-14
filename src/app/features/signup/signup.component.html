@@ -1,1 +1,23 @@
-<p>signup works!</p>
+<app-header></app-header>
+
+<form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="content">
+    <h2>Sign up</h2>
+    <div class="input-style-sec">
+        <input #email="ngModel" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required ngModel>
+    </div>
+    <div class="input-style-sec password-container">
+        <input #password="ngModel" [type]="isPasswordVisible ? 'text' : 'password'" name="password" placeholder="Enter a password" minlength="6" required ngModel>
+        <img (mousedown)="showPassword('password', true)" (mouseup)="showPassword('password', false)" (mouseleave)="showPassword('password', false)" [src]="isPasswordVisible ? 'icon/visibility.png' : 'icon/visibility-off.png'" alt="visibility">
+    </div>
+    <div class="input-style-sec password-container">
+        <input #passwordRepeat="ngModel" [type]="isPasswordRepeatVisible ? 'text' : 'password'" name="passwordRepeat" placeholder="Confirm password" minlength="6" required ngModel>
+        <img (mousedown)="showPassword('passwordRepeat', true)" (mouseup)="showPassword('passwordRepeat', false)" (mouseleave)="showPassword('passwordRepeat', false)" [src]="isPasswordRepeatVisible ? 'icon/visibility.png' : 'icon/visibility-off.png'" alt="visibility">
+    </div>
+    <input [disabled]="email.invalid || password.invalid || passwordRepeat.invalid" class="btn-prim" type="submit" name="submit" value="Get started">
+</form>
+
+@if (toastErrorSerivce.toastError()) {
+    <app-toast-error [msg]="toastErrorMsg"></app-toast-error>
+}
+
+<app-footer></app-footer>

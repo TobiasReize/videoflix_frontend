@@ -2,6 +2,7 @@
 @use '../../../styles/animation';
 @use '../../../styles/color';
 @use '../../../styles/typography';
+@use '../../../styles/helper';
 
 :host {
     @extend .dF-row-cc;
@@ -29,14 +30,6 @@ h2 {
 
 .input-style-sec {
     margin-top: 32px;
-}
-
-.password-container {
-    gap: 16px;
-
-    > img {
-        cursor: pointer;
-    }
 }
 
 .remember-me-container {

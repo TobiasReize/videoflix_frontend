@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  showPassword(state:boolean) {
+  showPassword(state: boolean) {
     if (state == true) {
       this.isPasswordVisible = true;
     } else {

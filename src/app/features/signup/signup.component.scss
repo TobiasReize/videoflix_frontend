@@ -1,0 +1,30 @@
+@use '../../../styles/layout';
+@use '../../../styles/animation';
+@use '../../../styles/color';
+@use '../../../styles/typography';
+@use '../../../styles/helper';
+
+:host {
+    @extend .dF-row-cc;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url('../../../../public/img/background_2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.content {
+    @extend .dF-column-cc;
+    gap: 32px;
+    background-color: white;
+    border-radius: 48px;
+    padding: 43px 56px;
+    width: 520px;
+}
+
+h2 {
+    color: color.$main-color;
+}

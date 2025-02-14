@@ -16,7 +16,7 @@
         </label>
         <span>Remember me</span>
     </div>
-    <input [disabled]="!email.valid || !password.valid" class="btn-prim" type="submit" name="submit" value="Log in">
+    <input [disabled]="email.invalid || password.invalid" class="btn-prim" type="submit" name="submit" value="Log in">
     <a class="forgot-password" routerLink="/">Forgot password?</a>
     <div class="signup-container">
         <span>New to Videoflix?</span>

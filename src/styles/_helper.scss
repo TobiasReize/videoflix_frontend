@@ -79,3 +79,11 @@
         }
     }
 }
+
+.password-container {
+    gap: 16px;
+
+    > img {
+        cursor: pointer;
+    }
+}
