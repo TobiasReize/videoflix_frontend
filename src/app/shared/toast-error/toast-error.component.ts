@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { ToastErrorService } from '../../services/toast-error.service';
+import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 
 @Component({
   selector: 'app-toast-error',

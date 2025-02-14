@@ -4,7 +4,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
-import { ToastErrorService } from '../../services/toast-error.service';
+import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 
 @Component({
   selector: 'app-login',

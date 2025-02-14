@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastErrorComponent } from '../../shared/toast-error/toast-error.component';
-import { ToastErrorService } from '../../services/toast-error.service';
+import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { Router } from '@angular/router';
