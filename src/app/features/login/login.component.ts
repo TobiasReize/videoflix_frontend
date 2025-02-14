@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   toastErrorSerivce = inject(ToastErrorService);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
+  
   ngOnInit(): void {
     this.toastErrorSerivce.resetToastError();
   }

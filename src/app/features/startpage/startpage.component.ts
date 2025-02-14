@@ -4,6 +4,7 @@ import { ToastErrorComponent } from '../../shared/toast-error/toast-error.compon
 import { ToastErrorService } from '../../services/toast-error.service';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-startpage',
@@ -19,6 +20,9 @@ export class StartpageComponent implements OnInit {
   toastErrorMsg: string = '';
 
 
+  constructor(private router: Router) { }
+
+
   ngOnInit(): void {
     this.toastErrorSerivce.resetToastError();
   }
@@ -30,6 +34,7 @@ export class StartpageComponent implements OnInit {
       this.toastErrorSerivce.resetToastError();
       console.log('signUpEmail:', this.signUpEmail);
       ngForm.resetForm();
+      this.router.navigateByUrl('signup');
     } else {
       console.log('Fehler!!!');
       this.toastErrorMsg = 'Please enter a valid e-mail address';
