@@ -24,7 +24,7 @@
     </div>
 </form>
 
-@if (toastErrorSerivce.toastError()) {
+@if (toastMsgSerivce.toastMsg()) {
     <app-toast-msg [msg]="toastErrorMsg" [state]="'error'"></app-toast-msg>
 }
 

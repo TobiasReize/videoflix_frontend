@@ -3,7 +3,7 @@ import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
-import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
+import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 import { LoginService } from '../../services/login-service/login.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { LoginService } from '../../services/login-service/login.service';
 })
 export class SignupComponent implements OnInit {
   
-  toastErrorSerivce = inject(ToastErrorService);
+  toastMsgSerivce = inject(ToastMsgService);
   loginService = inject(LoginService);
   toastErrorMsg: string = '';
   isPasswordVisible: boolean = false;
@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.toastErrorSerivce.resetToastError();
+    this.toastMsgSerivce.resetToastMsg();
   }
 
 
@@ -54,9 +54,9 @@ export class SignupComponent implements OnInit {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
       this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
-      this.toastErrorSerivce.resetToastError();
+      this.toastMsgSerivce.resetToastMsg();
       setTimeout(() => {
-        this.toastErrorSerivce.setToastError();
+        this.toastMsgSerivce.setToastMsg();
       }, 100);
       ngForm.resetForm();
     }

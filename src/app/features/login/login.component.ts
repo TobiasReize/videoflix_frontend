@@ -4,7 +4,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
-import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
+import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
   toastErrorMsg: string = '';
-  toastErrorSerivce = inject(ToastErrorService);
+  toastMsgSerivce = inject(ToastMsgService);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
   
   ngOnInit(): void {
-    this.toastErrorSerivce.resetToastError();
+    this.toastMsgSerivce.resetToastMsg();
   }
 
 
@@ -39,14 +39,14 @@ export class LoginComponent implements OnInit {
       if (ngForm.submitted && ngForm.form.valid) {
         // tbd.
         console.log('Form:', ngForm.form.value);
-        this.toastErrorSerivce.resetToastError();
+        this.toastMsgSerivce.resetToastMsg();
         this.emptyForm(ngForm);
       } else {
         console.log('Fehler!!!');
         this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
-        this.toastErrorSerivce.resetToastError();
+        this.toastMsgSerivce.resetToastMsg();
         setTimeout(() => {
-          this.toastErrorSerivce.setToastError();
+          this.toastMsgSerivce.setToastMsg();
         }, 100);
         this.emptyForm(ngForm);
       }

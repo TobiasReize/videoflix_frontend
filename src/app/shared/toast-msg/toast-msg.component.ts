@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { ToastErrorService } from '../../services/toast-error-service/toast-error.service';
+import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 
 @Component({
   selector: 'app-toast-msg',
@@ -10,13 +10,13 @@ import { ToastErrorService } from '../../services/toast-error-service/toast-erro
 })
 export class ToastMsgComponent {
 
-  toastErrorSerivce = inject(ToastErrorService);
+  toastMsgSerivce = inject(ToastMsgService);
   @Input() msg: string = '';
   @Input() state: 'error' | 'ok' | null = null;
 
 
   removeToastError() {
-    this.toastErrorSerivce.resetToastError();
+    this.toastMsgSerivce.resetToastMsg();
   }
 
 }
