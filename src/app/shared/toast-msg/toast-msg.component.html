@@ -5,7 +5,7 @@
             <img src="icon/exclamation-circle.png" alt="exclamation-circle">
             <p>{{ msg }}</p>
             <div class="separator"></div>
-            <img (click)="removeToastError()" class="icon-close" src="icon/close.png" alt="close">
+            <img (click)="toastMsgSerivce.removeToastMsg()" class="icon-close" src="icon/close.png" alt="close">
         </div>
     </div>
 } @else if (state == 'ok') {
@@ -14,7 +14,7 @@
         <div class="inner-content">
             <p>{{ msg }}</p>
             <div class="separator"></div>
-            <img (click)="removeToastError()" class="icon-close" src="icon/close.png" alt="close">
+            <img (click)="toastMsgSerivce.removeToastMsg()" class="icon-close" src="icon/close.png" alt="close">
         </div>
     </div>
 }

@@ -39,6 +39,7 @@ export class StartpageComponent implements OnInit {
       this.router.navigateByUrl('signup');
     } else {
       console.log('Fehler!!!');
+      ngForm.resetForm();
       this.loginService.setSignupEmail('');
       this.toastMsg = 'Please enter a valid e-mail address';
       this.toastMsgSerivce.removeToastMsg();

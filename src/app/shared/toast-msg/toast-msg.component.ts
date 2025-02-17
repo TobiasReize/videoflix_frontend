@@ -15,8 +15,4 @@ export class ToastMsgComponent {
   @Input() state: 'error' | 'ok' | null = null;
 
 
-  removeToastError() {
-    this.toastMsgSerivce.removeToastMsg();
-  }
-
 }

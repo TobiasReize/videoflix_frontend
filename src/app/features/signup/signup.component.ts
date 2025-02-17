@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   toastMsgSerivce = inject(ToastMsgService);
   loginService = inject(LoginService);
   toastMsg: string = '';
+  toastState: 'error' | 'ok' | null = null;
   isPasswordVisible: boolean = false;
   isPasswordRepeatVisible: boolean = false;
 
@@ -48,12 +49,15 @@ export class SignupComponent implements OnInit {
     if (ngForm.submitted && ngForm.form.valid) {
       // tbd.
       console.log('Form:', ngForm.form.value);
+      this.toastMsg = 'E-mail sent! Please confirm your e-mail address!';
+      this.toastState = 'ok';
       this.loginService.setSignupEmail('');
       ngForm.resetForm();
     } else {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
       this.toastMsg = 'Invalid e-mail or password! Please try again!';
+      this.toastState = 'error';
       this.toastMsgSerivce.removeToastMsg();
       setTimeout(() => {
         this.toastMsgSerivce.showToastMsg();
