@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   
   toastMsgSerivce = inject(ToastMsgService);
   loginService = inject(LoginService);
-  toastErrorMsg: string = '';
+  toastMsg: string = '';
   isPasswordVisible: boolean = false;
   isPasswordRepeatVisible: boolean = false;
 
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
     } else {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
-      this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
+      this.toastMsg = 'Invalid e-mail or password! Please try again!';
       this.toastMsgSerivce.removeToastMsg();
       setTimeout(() => {
         this.toastMsgSerivce.showToastMsg();

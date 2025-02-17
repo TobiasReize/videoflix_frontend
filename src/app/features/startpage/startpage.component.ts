@@ -19,7 +19,7 @@ export class StartpageComponent implements OnInit {
   toastMsgSerivce = inject(ToastMsgService);
   loginService = inject(LoginService);
   signUpEmail: string = '';
-  toastErrorMsg: string = '';
+  toastMsg: string = '';
 
 
   constructor(private router: Router) { }
@@ -40,7 +40,7 @@ export class StartpageComponent implements OnInit {
     } else {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
-      this.toastErrorMsg = 'Please enter a valid e-mail address';
+      this.toastMsg = 'Please enter a valid e-mail address';
       this.toastMsgSerivce.removeToastMsg();
       setTimeout(() => {
         this.toastMsgSerivce.showToastMsg();

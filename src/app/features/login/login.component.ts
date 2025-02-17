@@ -16,7 +16,7 @@ import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.serv
 export class LoginComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
-  toastErrorMsg: string = '';
+  toastMsg: string = '';
   toastMsgSerivce = inject(ToastMsgService);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.emptyForm(ngForm);
       } else {
         console.log('Fehler!!!');
-        this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
+        this.toastMsg = 'Invalid e-mail or password! Please try again!';
         this.toastMsgSerivce.removeToastMsg();
         setTimeout(() => {
           this.toastMsgSerivce.showToastMsg();
