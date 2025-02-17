@@ -4,7 +4,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
-import { LoginService } from '../../services/login-service/login.service';
+import { FormService } from '../../services/form-service/form.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +16,7 @@ import { LoginService } from '../../services/login-service/login.service';
 export class SignupComponent implements OnInit {
   
   toastMsgService = inject(ToastMsgService);
-  loginService = inject(LoginService);
+  formService = inject(FormService);
   isPasswordVisible: boolean = false;
   isPasswordRepeatVisible: boolean = false;
 
@@ -78,7 +78,7 @@ export class SignupComponent implements OnInit {
 
 
   resetServices() {
-    this.loginService.setSignupEmail('');
+    this.formService.setSignupEmail('');
     this.toastMsgService.resetToastMsg();
   }
   

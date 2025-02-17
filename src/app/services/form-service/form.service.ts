@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class FormService {
 
   private signupEmailSignal = signal<string>('');
   readonly signupEmail = this.signupEmailSignal.asReadonly();

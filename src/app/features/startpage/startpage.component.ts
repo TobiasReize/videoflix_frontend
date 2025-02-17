@@ -5,7 +5,7 @@ import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.serv
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login-service/login.service';
+import { FormService } from '../../services/form-service/form.service';
 
 @Component({
   selector: 'app-startpage',
@@ -17,7 +17,7 @@ import { LoginService } from '../../services/login-service/login.service';
 export class StartpageComponent implements OnInit {
 
   toastMsgService = inject(ToastMsgService);
-  loginService = inject(LoginService);
+  formService = inject(FormService);
   signUpEmail: string = '';
 
 
@@ -32,14 +32,14 @@ export class StartpageComponent implements OnInit {
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
       this.toastMsgService.resetToastMsg();
-      this.loginService.setSignupEmail(this.signUpEmail);
+      this.formService.setSignupEmail(this.signUpEmail);
       console.log('signUpEmail:', this.signUpEmail);
       ngForm.resetForm();
       this.router.navigateByUrl('signup');
     } else {
       console.log('Fehler!!!');
       ngForm.resetForm();
-      this.loginService.setSignupEmail('');
+      this.formService.setSignupEmail('');
       this.toastMsgService.resetToastMsg();
       setTimeout(() => {
         this.toastMsgService.showToastMsg('error', 'Please enter a valid e-mail address!');
