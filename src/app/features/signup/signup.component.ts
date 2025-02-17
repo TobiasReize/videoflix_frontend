@@ -15,14 +15,14 @@ import { LoginService } from '../../services/login-service/login.service';
 })
 export class SignupComponent implements OnInit {
   
-  toastMsgSerivce = inject(ToastMsgService);
+  toastMsgService = inject(ToastMsgService);
   loginService = inject(LoginService);
   isPasswordVisible: boolean = false;
   isPasswordRepeatVisible: boolean = false;
 
 
   ngOnInit(): void {
-    this.toastMsgSerivce.resetToastMsg();
+    this.toastMsgService.resetToastMsg();
   }
 
 
@@ -44,25 +44,42 @@ export class SignupComponent implements OnInit {
 
 
   onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.form.valid) {
-      // tbd.
+    this.resetServices();
+    if (this.formIsValid(ngForm)) {
       console.log('Form:', ngForm.form.value);
-      this.loginService.setSignupEmail('');
-      this.toastMsgSerivce.resetToastMsg();
-      setTimeout(() => {
-        this.toastMsgSerivce.showToastMsg('ok', 'E-mail sent! Please confirm your e-mail address!');
-      }, 100);
-      ngForm.resetForm();
+      if (this.passwordsMatch(ngForm)) {
+        this.setToastMsg('ok', 'E-mail sent! Please confirm your e-mail address.');
+      } else {
+        this.setToastMsg('error', 'Passwords don\'t match! Please try again.');
+      }
     } else {
       console.log('Fehler!!!');
-      this.loginService.setSignupEmail('');
-      this.toastMsgSerivce.resetToastMsg();
-      setTimeout(() => {
-        this.toastMsgSerivce.showToastMsg('error', 'Invalid e-mail or password! Please try again!');
-      }, 100);
-      ngForm.resetForm();
+      this.setToastMsg('error', 'Invalid e-mail or password! Please try again.');
     }
+    ngForm.resetForm();
+  }
+
+
+  formIsValid(ngForm: NgForm) {
+    return (ngForm.submitted && ngForm.form.valid);
+  }
+
+
+  passwordsMatch(ngForm: NgForm) {
+    return (ngForm.form.value.password === ngForm.form.value.passwordRepeat);
+  }
+
+
+  setToastMsg(state: 'error' | 'ok', msg: string) {
+    setTimeout(() => {
+      this.toastMsgService.showToastMsg(state, msg);
+    }, 100);
+  }
+
+
+  resetServices() {
+    this.loginService.setSignupEmail('');
+    this.toastMsgService.resetToastMsg();
   }
   
-
 }

@@ -16,7 +16,7 @@ import { LoginService } from '../../services/login-service/login.service';
 })
 export class StartpageComponent implements OnInit {
 
-  toastMsgSerivce = inject(ToastMsgService);
+  toastMsgService = inject(ToastMsgService);
   loginService = inject(LoginService);
   signUpEmail: string = '';
 
@@ -25,13 +25,13 @@ export class StartpageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.toastMsgSerivce.resetToastMsg();
+    this.toastMsgService.resetToastMsg();
   }
 
 
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
-      this.toastMsgSerivce.resetToastMsg();
+      this.toastMsgService.resetToastMsg();
       this.loginService.setSignupEmail(this.signUpEmail);
       console.log('signUpEmail:', this.signUpEmail);
       ngForm.resetForm();
@@ -40,9 +40,9 @@ export class StartpageComponent implements OnInit {
       console.log('Fehler!!!');
       ngForm.resetForm();
       this.loginService.setSignupEmail('');
-      this.toastMsgSerivce.resetToastMsg();
+      this.toastMsgService.resetToastMsg();
       setTimeout(() => {
-        this.toastMsgSerivce.showToastMsg('error', 'Please enter a valid e-mail address!');
+        this.toastMsgService.showToastMsg('error', 'Please enter a valid e-mail address!');
       }, 100);
     }
   }

@@ -16,7 +16,7 @@
     <input [disabled]="email.invalid || password.invalid || passwordRepeat.invalid" class="btn-prim" type="submit" name="submit" value="Get started">
 </form>
 
-@if (toastMsgSerivce.toastState() != 'unset') {
+@if (toastMsgService.toastState() != 'unset') {
     <app-toast-msg></app-toast-msg>
 }
 

@@ -10,8 +10,8 @@ import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.serv
 })
 export class ToastMsgComponent {
 
-  toastMsgSerivce = inject(ToastMsgService);
-  msg = computed(() => this.toastMsgSerivce.toastMsg());
-  state = computed(() => this.toastMsgSerivce.toastState());
+  toastMsgService = inject(ToastMsgService);
+  msg = computed(() => this.toastMsgService.toastMsg());
+  state = computed(() => this.toastMsgService.toastState());
 
 }
