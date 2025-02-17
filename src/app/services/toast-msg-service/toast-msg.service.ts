@@ -5,19 +5,25 @@ import { Injectable, signal } from '@angular/core';
 })
 export class ToastMsgService {
 
-  private toastMsgSignal = signal<boolean>(false);
+  private toastMsgSignal = signal<string>('');
   readonly toastMsg = this.toastMsgSignal.asReadonly();
+
+  private toastStateSignal = signal<'error' | 'ok' | 'unset'>('unset');
+  readonly toastState = this.toastStateSignal.asReadonly();
 
 
   constructor() { }
 
 
-  showToastMsg() {
-    this.toastMsgSignal.set(true);
+  showToastMsg(state: 'error' | 'ok', msg: string) {
+    this.toastMsgSignal.set(msg);
+    this.toastStateSignal.set(state);
   }
 
-  removeToastMsg() {
-    this.toastMsgSignal.set(false);
+
+  resetToastMsg() {
+    this.toastStateSignal.set('unset');
+    this.toastMsgSignal.set('');
   }
 
 }

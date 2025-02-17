@@ -17,14 +17,12 @@ export class SignupComponent implements OnInit {
   
   toastMsgSerivce = inject(ToastMsgService);
   loginService = inject(LoginService);
-  toastMsg: string = '';
-  toastState: 'error' | 'ok' | null = null;
   isPasswordVisible: boolean = false;
   isPasswordRepeatVisible: boolean = false;
 
 
   ngOnInit(): void {
-    this.toastMsgSerivce.removeToastMsg();
+    this.toastMsgSerivce.resetToastMsg();
   }
 
 
@@ -49,18 +47,18 @@ export class SignupComponent implements OnInit {
     if (ngForm.submitted && ngForm.form.valid) {
       // tbd.
       console.log('Form:', ngForm.form.value);
-      this.toastMsg = 'E-mail sent! Please confirm your e-mail address!';
-      this.toastState = 'ok';
       this.loginService.setSignupEmail('');
+      this.toastMsgSerivce.resetToastMsg();
+      setTimeout(() => {
+        this.toastMsgSerivce.showToastMsg('ok', 'E-mail sent! Please confirm your e-mail address!');
+      }, 100);
       ngForm.resetForm();
     } else {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
-      this.toastMsg = 'Invalid e-mail or password! Please try again!';
-      this.toastState = 'error';
-      this.toastMsgSerivce.removeToastMsg();
+      this.toastMsgSerivce.resetToastMsg();
       setTimeout(() => {
-        this.toastMsgSerivce.showToastMsg();
+        this.toastMsgSerivce.showToastMsg('error', 'Invalid e-mail or password! Please try again!');
       }, 100);
       ngForm.resetForm();
     }

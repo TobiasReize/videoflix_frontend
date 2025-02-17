@@ -16,13 +16,12 @@ import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.serv
 export class LoginComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
-  toastMsg: string = '';
   toastMsgSerivce = inject(ToastMsgService);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
   
   ngOnInit(): void {
-    this.toastMsgSerivce.removeToastMsg();
+    this.toastMsgSerivce.resetToastMsg();
   }
 
 
@@ -39,14 +38,13 @@ export class LoginComponent implements OnInit {
       if (ngForm.submitted && ngForm.form.valid) {
         // tbd.
         console.log('Form:', ngForm.form.value);
-        this.toastMsgSerivce.removeToastMsg();
+        this.toastMsgSerivce.resetToastMsg();
         this.emptyForm(ngForm);
       } else {
         console.log('Fehler!!!');
-        this.toastMsg = 'Invalid e-mail or password! Please try again!';
-        this.toastMsgSerivce.removeToastMsg();
+        this.toastMsgSerivce.resetToastMsg();
         setTimeout(() => {
-          this.toastMsgSerivce.showToastMsg();
+          this.toastMsgSerivce.showToastMsg('error', 'Invalid e-mail or password! Please try again!');
         }, 100);
         this.emptyForm(ngForm);
       }

@@ -9,8 +9,8 @@
     </form>
 </div>
 
-@if (toastMsgSerivce.toastMsg()) {
-    <app-toast-msg [msg]="toastMsg" [state]="'error'"></app-toast-msg>
+@if (toastMsgSerivce.toastState() != 'unset') {
+    <app-toast-msg></app-toast-msg>
 }
 
 <app-footer></app-footer>

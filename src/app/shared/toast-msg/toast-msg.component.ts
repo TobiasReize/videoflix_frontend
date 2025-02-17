@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 
 @Component({
@@ -11,8 +11,7 @@ import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.serv
 export class ToastMsgComponent {
 
   toastMsgSerivce = inject(ToastMsgService);
-  @Input() msg: string = '';
-  @Input() state: 'error' | 'ok' | null = null;
-
+  msg = computed(() => this.toastMsgSerivce.toastMsg());
+  state = computed(() => this.toastMsgSerivce.toastState());
 
 }
