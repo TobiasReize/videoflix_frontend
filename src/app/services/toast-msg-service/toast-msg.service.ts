@@ -12,11 +12,11 @@ export class ToastMsgService {
   constructor() { }
 
 
-  setToastMsg() {
+  showToastMsg() {
     this.toastMsgSignal.set(true);
   }
 
-  resetToastMsg() {
+  removeToastMsg() {
     this.toastMsgSignal.set(false);
   }
 

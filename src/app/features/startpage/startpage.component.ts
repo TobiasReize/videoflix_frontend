@@ -26,13 +26,13 @@ export class StartpageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.toastMsgSerivce.resetToastMsg();
+    this.toastMsgSerivce.removeToastMsg();
   }
   
 
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
-      this.toastMsgSerivce.resetToastMsg();
+      this.toastMsgSerivce.removeToastMsg();
       this.loginService.setSignupEmail(this.signUpEmail);
       console.log('signUpEmail:', this.signUpEmail);
       ngForm.resetForm();
@@ -41,9 +41,9 @@ export class StartpageComponent implements OnInit {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
       this.toastErrorMsg = 'Please enter a valid e-mail address';
-      this.toastMsgSerivce.resetToastMsg();
+      this.toastMsgSerivce.removeToastMsg();
       setTimeout(() => {
-        this.toastMsgSerivce.setToastMsg();
+        this.toastMsgSerivce.showToastMsg();
       }, 100);
     }
   }

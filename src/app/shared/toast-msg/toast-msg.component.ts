@@ -16,7 +16,7 @@ export class ToastMsgComponent {
 
 
   removeToastError() {
-    this.toastMsgSerivce.resetToastMsg();
+    this.toastMsgSerivce.removeToastMsg();
   }
 
 }

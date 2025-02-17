@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.toastMsgSerivce.resetToastMsg();
+    this.toastMsgSerivce.removeToastMsg();
   }
 
 
@@ -54,9 +54,9 @@ export class SignupComponent implements OnInit {
       console.log('Fehler!!!');
       this.loginService.setSignupEmail('');
       this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
-      this.toastMsgSerivce.resetToastMsg();
+      this.toastMsgSerivce.removeToastMsg();
       setTimeout(() => {
-        this.toastMsgSerivce.setToastMsg();
+        this.toastMsgSerivce.showToastMsg();
       }, 100);
       ngForm.resetForm();
     }

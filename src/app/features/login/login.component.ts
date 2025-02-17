@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.toastMsgSerivce.resetToastMsg();
+    this.toastMsgSerivce.removeToastMsg();
   }
 
 
@@ -39,14 +39,14 @@ export class LoginComponent implements OnInit {
       if (ngForm.submitted && ngForm.form.valid) {
         // tbd.
         console.log('Form:', ngForm.form.value);
-        this.toastMsgSerivce.resetToastMsg();
+        this.toastMsgSerivce.removeToastMsg();
         this.emptyForm(ngForm);
       } else {
         console.log('Fehler!!!');
         this.toastErrorMsg = 'Invalid e-mail or password! Please try again!';
-        this.toastMsgSerivce.resetToastMsg();
+        this.toastMsgSerivce.removeToastMsg();
         setTimeout(() => {
-          this.toastMsgSerivce.setToastMsg();
+          this.toastMsgSerivce.showToastMsg();
         }, 100);
         this.emptyForm(ngForm);
       }
