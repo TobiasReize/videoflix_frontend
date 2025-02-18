@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { FormService } from '../../services/form-service/form.service';
@@ -13,11 +13,16 @@ import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements OnInit {
 
   formService = inject(FormService);
   toastMsgService = inject(ToastMsgService);
   
+
+  ngOnInit(): void {
+    this.toastMsgService.resetToastMsg();
+  }
+
 
   onSubmit(ngForm: NgForm) {
     this.formService.formSubmit('forgot-password', ngForm);

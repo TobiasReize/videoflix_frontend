@@ -77,6 +77,9 @@ export class FormService {
       case 'forgot-password':
         this.formSubmitForgotPassword();
         break
+      case 'reset-password':
+        this.formSubmitResetPassword(ngForm);
+        break
     }
   }
 
@@ -105,6 +108,16 @@ export class FormService {
   formSubmitForgotPassword() {
     this.setToastMsg('ok', 'E-mail sent! Please follow the instructions.');
     // tbd.
+  }
+
+
+  formSubmitResetPassword(ngForm: NgForm) {
+    if (this.passwordsMatch(ngForm)) {
+      // tbd.
+      this.setToastMsg('ok', 'Success! Your password has been changed.');
+    } else {
+      this.setToastMsg('error', 'Passwords don\'t match! Please try again.');
+    }
   }
 
 
