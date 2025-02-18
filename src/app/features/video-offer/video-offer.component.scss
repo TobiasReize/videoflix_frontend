@@ -1,10 +1,58 @@
 @use '../../../styles/layout';
 @use '../../../styles/color';
+@use '../../../styles/typography';
 
 :host {
     @extend .dF-row-cc;
-    min-height: 100vh;
-    min-height: 100svh;
+    height: 100vh;
+    height: 100svh;
     width: 100%;
     background-color: color.$background-black;
+    position: relative;
+}
+
+.content {
+    @extend .dF-column-jc-flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.content-wrapper {
+    width: 100%;
+    padding: 0 calc((100% - 1920px) / 2);
+}
+
+.video-preview {
+    @extend .dF-jc-flex-start;
+    height: 50%;
+    background-image: url('../../../../public/img/video-1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.video-description {
+    @extend .dF-column-ai-flex-start;
+    width: 440px;
+    gap: 32px;
+}
+
+.btn-play {
+    @extend .dF-row-cc;
+    gap: 4px;
+
+    > span {
+        @extend .font-style-5;
+    }
+}
+
+
+
+
+
+
+
+.video-content {
+    background-color: lightcyan;
+    height: 50%;
 }

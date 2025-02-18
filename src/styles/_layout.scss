@@ -28,3 +28,11 @@
 .dF-column-cc {
     @include dFlex($fd: column);
 }
+
+.dF-column-jc-flex-start {
+    @include dFlex($fd: column, $jc: flex-start);
+}
+
+.dF-column-ai-flex-start {
+    @include dFlex($fd: column, $ai: flex-start);
+}
