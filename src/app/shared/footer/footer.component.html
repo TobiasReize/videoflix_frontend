@@ -1,4 +1,13 @@
-<div class="content">
-    <a routerLink="/imprint">Imprint</a>
-    <a routerLink="/privacy-policy">Privacy policy</a>
-</div>
+@if (type == 'video-offer') {
+    <footer>
+        <div class="content">
+            <a routerLink="/imprint">Imprint</a>
+            <a routerLink="/privacy-policy">Privacy policy</a>
+        </div>
+    </footer>
+} @else {
+    <div class="content">
+        <a routerLink="/imprint">Imprint</a>
+        <a routerLink="/privacy-policy">Privacy policy</a>
+    </div>
+}

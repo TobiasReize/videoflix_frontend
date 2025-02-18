@@ -3,7 +3,7 @@
 :host {
     width: 100%;
     position: absolute;
-    bottom: 48px;
+    bottom: 40px;
     left: 0;
     right: 0;
     @extend .dF-row-cc;
@@ -12,4 +12,10 @@
 .content {
     @extend .dF-row-cc;
     gap: 48px;
+}
+
+footer {
+    @extend .dF-jc-flex-end;
+    max-width: 1920px;
+    width: 100%;
 }
