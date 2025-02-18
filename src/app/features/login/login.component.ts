@@ -5,6 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
+import { FormService } from '../../services/form-service/form.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
   toastMsgService = inject(ToastMsgService);
+  formService = inject(FormService);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
   
@@ -35,25 +37,9 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(ngForm: NgForm) {
-      if (ngForm.submitted && ngForm.form.valid) {
-        // tbd.
-        console.log('Form:', ngForm.form.value);
-        this.toastMsgService.resetToastMsg();
-        this.emptyForm(ngForm);
-      } else {
-        console.log('Fehler!!!');
-        this.toastMsgService.resetToastMsg();
-        setTimeout(() => {
-          this.toastMsgService.showToastMsg('error', 'Invalid e-mail or password! Please try again!');
-        }, 100);
-        this.emptyForm(ngForm);
-      }
-  }
-
-
-  emptyForm(ngForm: NgForm) {
-    ngForm.resetForm();    
+    this.formService.formSubmit('login', ngForm);
     this.checkbox.nativeElement.checked = false;
   }
+
 
 }

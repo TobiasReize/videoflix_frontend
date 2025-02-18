@@ -4,7 +4,6 @@ import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
-import { Router } from '@angular/router';
 import { FormService } from '../../services/form-service/form.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class StartpageComponent implements OnInit {
   signUpEmail: string = '';
 
 
-  constructor(private router: Router) { }
+  constructor() { }
 
 
   ngOnInit(): void {
@@ -30,21 +29,8 @@ export class StartpageComponent implements OnInit {
 
 
   onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.form.valid) {
-      this.toastMsgService.resetToastMsg();
-      this.formService.setSignupEmail(this.signUpEmail);
-      console.log('signUpEmail:', this.signUpEmail);
-      ngForm.resetForm();
-      this.router.navigateByUrl('signup');
-    } else {
-      console.log('Fehler!!!');
-      ngForm.resetForm();
-      this.formService.setSignupEmail('');
-      this.toastMsgService.resetToastMsg();
-      setTimeout(() => {
-        this.toastMsgService.showToastMsg('error', 'Please enter a valid e-mail address!');
-      }, 100);
-    }
+    this.formService.setSignupEmail(this.signUpEmail);
+    this.formService.formSubmit('startpage', ngForm);
   }
 
 }

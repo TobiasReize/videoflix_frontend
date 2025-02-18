@@ -44,42 +44,8 @@ export class SignupComponent implements OnInit {
 
 
   onSubmit(ngForm: NgForm) {
-    this.resetServices();
-    if (this.formIsValid(ngForm)) {
-      console.log('Form:', ngForm.form.value);
-      if (this.passwordsMatch(ngForm)) {
-        this.setToastMsg('ok', 'E-mail sent! Please confirm your e-mail address.');
-      } else {
-        this.setToastMsg('error', 'Passwords don\'t match! Please try again.');
-      }
-    } else {
-      console.log('Fehler!!!');
-      this.setToastMsg('error', 'Invalid e-mail or password! Please try again.');
-    }
-    ngForm.resetForm();
+    this.formService.formSubmit('signup', ngForm);
   }
 
-
-  formIsValid(ngForm: NgForm) {
-    return (ngForm.submitted && ngForm.form.valid);
-  }
-
-
-  passwordsMatch(ngForm: NgForm) {
-    return (ngForm.form.value.password === ngForm.form.value.passwordRepeat);
-  }
-
-
-  setToastMsg(state: 'error' | 'ok', msg: string) {
-    setTimeout(() => {
-      this.toastMsgService.showToastMsg(state, msg);
-    }, 100);
-  }
-
-
-  resetServices() {
-    this.formService.setSignupEmail('');
-    this.toastMsgService.resetToastMsg();
-  }
   
 }
