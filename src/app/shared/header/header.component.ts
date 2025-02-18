@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
 
-  @Input() type: string = ''
+  @Input() type: string = '';
 
 
   constructor(private location: Location) { }
