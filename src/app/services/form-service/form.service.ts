@@ -74,6 +74,9 @@ export class FormService {
       case 'signup':
         this.formSubmitSignup(ngForm);
         break;
+      case 'forgot-password':
+        this.formSubmitForgotPassword();
+        break
     }
   }
 
@@ -96,6 +99,12 @@ export class FormService {
       this.setToastMsg('error', 'Passwords don\'t match! Please try again.');
     }
     this.signupEmailSignal.set('');
+  }
+
+
+  formSubmitForgotPassword() {
+    this.setToastMsg('ok', 'E-mail sent! Please follow the instructions.');
+    // tbd.
   }
 
 
