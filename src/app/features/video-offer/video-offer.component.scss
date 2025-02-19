@@ -24,8 +24,8 @@
 
 .video-preview {
     @extend .dF-jc-flex-start;
-    height: 50%;
-    background-image: url('../../../../public/img/video-1.png');
+    height: 55%;
+    background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0)), url('../../../../public/img/video-preview.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -46,13 +46,20 @@
     }
 }
 
-
-
-
-
-
-
 .video-content {
-    background-color: lightcyan;
-    height: 50%;
+    @extend .dF-column-ai-flex-start;
+    height: 55%;
+    gap: 48px;
+}
+
+.video-genre {
+    @extend .dF-column-ai-flex-start;
+    width: 100%;
+    gap: 16px;
+}
+
+.video-container {
+    @extend .dF-jc-flex-start;
+    width: 100%;
+    gap: 16px;
 }

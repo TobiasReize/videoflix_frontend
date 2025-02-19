@@ -1,7 +1,7 @@
 <app-header [type]="'video-offer'"></app-header>
 
 <div class="content">
-    <div class="video-preview content-wrapper">
+    <section class="video-preview content-wrapper">
         <div class="video-description">
             <h1>Breakout</h1>
             <p>In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.</p>
@@ -10,10 +10,20 @@
                 <span>Play</span>
             </button>
         </div>
-    </div>
-    <div class="video-content content-wrapper">
+    </section>
+    <section class="video-content content-wrapper">
+        @for (genre of videoGenres; track $index) {
+            <div class="video-genre">
+                <h5>{{ genre.title }}</h5>
+                <div class="video-container">
+                    @for (video of genre.videos; track $index) {
+                        <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                    }
+                </div>
+            </div>
+        }
 
-    </div>
+    </section>
 </div>
 
 <app-footer [type]="'video-offer'"></app-footer>
