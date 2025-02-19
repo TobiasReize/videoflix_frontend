@@ -26,3 +26,25 @@
     @extend .dF-row-cc;
     gap: 16px;
 }
+
+// Responsive Design:
+@media (max-width: 700px) {
+  .content {
+    width: 100%;
+    padding: 0 16px;
+    
+    > * {
+        text-align: center;
+    }
+  }
+
+  .input-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 392px) {
+    .input-container, .input-style-prim {
+        width: 100%;
+    }
+}

@@ -87,3 +87,18 @@
         cursor: pointer;
     }
 }
+
+// Responsive Design:
+@media (max-width: 700px) {
+    .input-style-prim {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20.83px;
+
+        &::placeholder {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20.83px;
+        }
+    }
+}

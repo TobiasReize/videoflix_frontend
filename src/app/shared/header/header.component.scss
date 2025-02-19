@@ -35,3 +35,26 @@
         @extend .font-style-5;
     }
 }
+
+.logo-mobile {
+    display: none;
+    height: 32px;
+}
+
+// Responsive Design:
+@media (max-width: 1952px) {
+    .content {
+        padding: 0 16px;
+        max-width: unset;
+    }
+}
+
+@media (max-width: 700px) {
+    .logo-text {
+        display: none;
+    }
+    
+    .logo-mobile {
+        display: block;
+    }
+}
