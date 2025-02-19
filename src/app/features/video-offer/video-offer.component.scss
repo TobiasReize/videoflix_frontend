@@ -15,6 +15,7 @@
     @extend .dF-column-jc-flex-start;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .content-wrapper {
@@ -24,11 +25,11 @@
 
 .video-preview {
     @extend .dF-flex-start;
-    height: 55%;
+    height: 60%;
     padding-top: 140px;
     padding-bottom: 100px;
     background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0)), url('../../../../public/img/video-preview.png');
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -50,10 +51,14 @@
 
 .video-content {
     @extend .dF-column-flex-start;
-    height: 55%;
+    height: 50%;
     gap: 48px;
     padding-bottom: 48px;
     overflow-y: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .video-genre {
@@ -65,6 +70,19 @@
 .video-container {
     @extend .dF-jc-flex-start;
     width: 100%;
+    height: 130px;
     gap: 16px;
     overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.thumbnail {
+    height: 120px;
+    width: 214px;
+    transition: all 225ms ease-out;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
 }

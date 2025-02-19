@@ -84,4 +84,10 @@ export class VideoOfferComponent implements OnInit {
   }
 
 
+  showVideo(video: Video) {
+    // tbd.
+    console.log('video:', video);
+  }
+
+
 }
