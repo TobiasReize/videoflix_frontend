@@ -36,3 +36,7 @@
 .dF-column-ai-flex-start {
     @include dFlex($fd: column, $ai: flex-start);
 }
+
+.dF-column-flex-start {
+    @include dFlex($fd: column, $jc: flex-start, $ai: flex-start);
+}

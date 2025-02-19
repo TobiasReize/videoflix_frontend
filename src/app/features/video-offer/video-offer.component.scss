@@ -23,8 +23,10 @@
 }
 
 .video-preview {
-    @extend .dF-jc-flex-start;
+    @extend .dF-flex-start;
     height: 55%;
+    padding-top: 140px;
+    padding-bottom: 100px;
     background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0)), url('../../../../public/img/video-preview.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -47,9 +49,11 @@
 }
 
 .video-content {
-    @extend .dF-column-ai-flex-start;
+    @extend .dF-column-flex-start;
     height: 55%;
     gap: 48px;
+    padding-bottom: 48px;
+    overflow-y: auto;
 }
 
 .video-genre {
@@ -62,4 +66,5 @@
     @extend .dF-jc-flex-start;
     width: 100%;
     gap: 16px;
+    overflow-x: auto;
 }
