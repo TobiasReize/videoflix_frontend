@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm" class="content">
+<form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm" class="form">
     <h2>Sign up</h2>
     <div class="input-style-sec">
         <input #email="ngModel" [ngModel]="formService.signupEmail()" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required ngModel>

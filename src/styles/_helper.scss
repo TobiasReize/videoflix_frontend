@@ -2,6 +2,25 @@
 @use 'typography';
 @use 'layout';
 
+.host {
+    @extend .dF-row-cc;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.form {
+    @extend .dF-column-cc;
+    background-color: white;
+    border-radius: 48px;
+    padding: 43px 56px;
+    width: 520px;
+}
+
 .btn {
     padding: 12px 24px;
     border-radius: 40px;
@@ -92,13 +111,23 @@
 @media (max-width: 700px) {
     .input-style-prim {
         font-size: 16px;
-        font-weight: 400;
         line-height: 20.83px;
 
         &::placeholder {
             font-size: 16px;
-            font-weight: 400;
             line-height: 20.83px;
+        }
+    }
+
+    .input-style-sec {
+        > input {
+            font-size: 16px;
+            line-height: 20.83px;
+    
+            &::placeholder {
+                font-size: 16px;
+                line-height: 20.83px;
+            }
         }
     }
 }

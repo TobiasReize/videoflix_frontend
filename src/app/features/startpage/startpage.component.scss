@@ -1,16 +1,10 @@
 @use '../../../styles/layout';
 @use '../../../styles/animation';
+@use '../../../styles/helper';
 
 :host {
-    @extend .dF-row-cc;
-    height: 100vh;
-    height: 100svh;
-    width: 100%;
+    @extend .host;
     background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url('../../../../public/img/startpage.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
     overflow-y: hidden;
 }
 
