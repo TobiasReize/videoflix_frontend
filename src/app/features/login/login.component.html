@@ -7,7 +7,15 @@
     </div>
     <div class="input-style-sec password-container">
         <input #password="ngModel" [type]="isPasswordVisible ? 'text' : 'password'" name="password" placeholder="Password" minlength="6" required ngModel>
-        <img (mousedown)="showPassword(true)" (mouseup)="showPassword(false)" (mouseleave)="showPassword(false)" [src]="isPasswordVisible ? 'icon/visibility.png' : 'icon/visibility-off.png'" alt="visibility">
+        <img
+        (mousedown)="showPassword(true)"
+        (mouseup)="showPassword(false)"
+        (mouseleave)="showPassword(false)"
+        (touchstart)="showPassword(true)"
+        (touchend)="showPassword(false)"
+        (touchcancel)="showPassword(false)"
+        [src]="isPasswordVisible ? 'icon/visibility.png' : 'icon/visibility-off.png'"
+        alt="visibility">
     </div>
     <div class="remember-me-container">
         <label class="custom-checkbox">
