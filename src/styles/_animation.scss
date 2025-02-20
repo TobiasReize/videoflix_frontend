@@ -13,3 +13,19 @@
         transform: translateX(0);
     }
 }
+
+.fly-up {
+    animation-name: flyUp;
+    animation-duration: 250ms;
+    animation-timing-function: ease-out;
+}
+
+@keyframes flyUp {
+    from {
+        transform: translateY(+100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}

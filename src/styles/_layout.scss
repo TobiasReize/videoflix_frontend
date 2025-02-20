@@ -25,6 +25,10 @@
     @include dFlex($jc: flex-end);
 }
 
+.dF-ai-flex-end {
+    @include dFlex($ai: flex-end);
+}
+
 .dF-column-cc {
     @include dFlex($fd: column);
 }
