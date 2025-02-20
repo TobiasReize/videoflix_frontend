@@ -83,6 +83,41 @@
 
     &:hover {
         cursor: pointer;
-        scale: 1.1;
+        filter: drop-shadow(0px 0px 4px white) brightness(1.2);
+    }
+}
+
+// ---------- Responsive Design ---------- //
+@media (max-width: 1952px) {
+    .content-wrapper {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .video-preview {
+        display: none;
+    }
+
+    .video-content {
+        position: unset;
+        margin-top: 140px;
+        height: 100%;
+    }
+
+    h5 {
+        font-size: 20px;
+        line-height: 26.04px;
+    }
+
+    .video-container {
+        height: 110px;
+        gap: 12px;
+    }
+
+    .thumbnail {
+        width: 170.5px;
+        height: 96px;
     }
 }

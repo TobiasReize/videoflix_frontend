@@ -38,6 +38,25 @@ footer {
 }
 
 // ---------- Responsive Design ---------- //
+@media (max-width: 2112px) {
+    footer {
+        max-width: unset;
+        padding-right: 96px;
+    }
+}
+
+@media (max-width: 1440px) {
+    footer {
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 1025px) {
+    footer {
+        display: none;
+    }
+}
+
 @media (max-width: 432px) {
     .content {
         > a {
