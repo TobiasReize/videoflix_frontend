@@ -92,6 +92,13 @@
 
     .inner-content {
         margin-left: 0;
+        width: 100%;
+        padding: 0 16px;
+        justify-content: center;
+
+        > p {
+            flex: unset;
+        }
     }
 
     .separator {
