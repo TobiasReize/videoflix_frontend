@@ -36,3 +36,13 @@ footer {
     width: 100%;
     height: 104px;
 }
+
+// ---------- Responsive Design ---------- //
+@media (max-width: 432px) {
+    .content {
+        > a {
+            font-size: 16px;
+            line-height: 20.83px;
+        }
+    }
+}

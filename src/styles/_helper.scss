@@ -11,6 +11,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    overflow-y: hidden;
 }
 
 .form {
@@ -109,6 +110,11 @@
 
 // ---------- Responsive Design ---------- //
 @media (max-width: 700px) {
+    .form {
+        width: 400px;
+        padding: 43px 24px;
+    }
+    
     .input-style-prim {
         font-size: 16px;
         line-height: 20.83px;
@@ -121,6 +127,8 @@
 
     .input-style-sec {
         > input {
+            flex: unset;
+            width: 100%;
             font-size: 16px;
             line-height: 20.83px;
     
@@ -129,5 +137,15 @@
                 line-height: 20.83px;
             }
         }
+    }
+}
+
+@media (max-width: 432px) {
+    .host {
+        padding: 0 16px;
+    }
+    
+    .form {
+        width: 100%;
     }
 }
