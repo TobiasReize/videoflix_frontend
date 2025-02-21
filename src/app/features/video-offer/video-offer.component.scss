@@ -27,7 +27,6 @@
     @extend .dF-flex-start;
     height: 60%;
     padding-top: 140px;
-    padding-bottom: 100px;
     background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0)), url('../../../../public/img/video-preview.png');
     background-position: top;
     background-repeat: no-repeat;
@@ -119,5 +118,11 @@
     .thumbnail {
         width: 170.5px;
         height: 96px;
+    }
+}
+
+@media (max-height: 1000px) {
+    .video-preview {
+        padding-top: 70px;
     }
 }
