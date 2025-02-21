@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { Video } from '../../interfaces/video.interface';
+import { CommonModule } from '@angular/common';
+import { VideoService } from '../../services/video-service/video.service';
 
 @Component({
   selector: 'app-video-offer',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent, CommonModule],
   templateUrl: './video-offer.component.html',
   styleUrl: './video-offer.component.scss'
 })
 export class VideoOfferComponent implements OnInit {
 
+  videoService = inject(VideoService);
+
   newVideos: Video[] = [];
   dramaVideos: Video[] = [];
   documentaryVideos: Video[] = [];
+
   videoGenres = [
     {
       title: 'New on Videoflix',
@@ -79,14 +84,18 @@ export class VideoOfferComponent implements OnInit {
             this.documentaryVideos.push(video);
             break;
         }
-      })
-    })
+      });
+    });
+    this.videoService.setCurrentVideoTitle(this.newVideos[0].title);
+    this.videoService.setCurrentVideoDescription(this.newVideos[0].description);
+    this.videoService.setImageUrl('url("img/video-preview.png")');
   }
 
 
-  showVideo(video: Video) {
+  showVideoDescription(video: Video) {
     // tbd.
     console.log('video:', video);
+    this.videoService.setImageUrl(`url("${video.thumbnail}")`);
   }
 
 

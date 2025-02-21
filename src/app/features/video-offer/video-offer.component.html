@@ -1,10 +1,11 @@
 <app-header [type]="'video-offer'"></app-header>
 
 <div class="content">
-    <section class="video-preview content-wrapper">
+    <section class="video-preview content-wrapper" [ngStyle]="{'background-image': videoService.currentVideoPreview()}">
+        <div class="video-preview-mobile"></div>
         <div class="video-description">
-            <h1>Breakout</h1>
-            <p>In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.</p>
+            <h1>{{ videoService.currentVideoTitle() }}</h1>
+            <p>{{ videoService.currentVideoDescription() }}</p>
             <button class="btn-prim btn-play">
                 <img src="icon/play.png" alt="play">
                 <span>Play</span>
@@ -17,7 +18,7 @@
                 <h5>{{ genre.title }}</h5>
                 <div class="video-container">
                     @for (video of genre.videos; track $index) {
-                        <img (click)="showVideo(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                        <img (click)="showVideoDescription(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
                     }
                 </div>
             </div>
