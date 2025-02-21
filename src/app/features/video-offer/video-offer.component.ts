@@ -4,6 +4,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { Video } from '../../interfaces/video.interface';
 import { CommonModule } from '@angular/common';
 import { VideoService } from '../../services/video-service/video.service';
+import { ScreenService } from '../../services/screen-service/screen.service';
 
 @Component({
   selector: 'app-video-offer',
@@ -15,6 +16,8 @@ import { VideoService } from '../../services/video-service/video.service';
 export class VideoOfferComponent implements OnInit {
 
   videoService = inject(VideoService);
+  screenService = inject(ScreenService);
+  showMobileDescription: boolean = false;
 
   newVideos: Video[] = [];
   dramaVideos: Video[] = [];
@@ -48,21 +51,21 @@ export class VideoOfferComponent implements OnInit {
     },
     {
       title: 'Rythms of Friendship',
-      description: 'In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.',
+      description: 'Test Rythms of Friendship.',
       thumbnail: 'img/video-2.png',
       video: '',
       genres: ['drama']
     },
     {
       title: 'Majestic Whales',
-      description: 'In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.',
+      description: 'Test Majestic Whales.',
       thumbnail: 'img/video-3.png',
       video: '',
       genres: ['new', 'documentary']
     },
     {
       title: 'Whispering SHADOWS',
-      description: 'In a high-security prison, a wrongly convicted man formulates a meticulous plan to break out and prove his innocence. He must navigate a web of alliances and betrayals to reclaim his freedom and expose the truth.',
+      description: 'Test Whispering SHADOWS.',
       thumbnail: 'img/video-4.png',
       video: '',
       genres: ['new', 'drama']
@@ -94,8 +97,12 @@ export class VideoOfferComponent implements OnInit {
 
   showVideoDescription(video: Video) {
     // tbd.
-    console.log('video:', video);
+    this.videoService.setCurrentVideoTitle(video.title);
+    this.videoService.setCurrentVideoDescription(video.description);
     this.videoService.setImageUrl(`url("${video.thumbnail}")`);
+    if (this.screenService.isMobile()) {
+      this.showMobileDescription = true;
+    }
   }
 
 

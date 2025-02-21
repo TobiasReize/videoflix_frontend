@@ -1,29 +1,34 @@
-<app-header [type]="'video-offer'"></app-header>
+<app-header [type]=" showMobileDescription ? 'video-offer-mobile' : 'video-offer'"></app-header>
 
 <div class="content">
-    <section class="video-preview content-wrapper" [ngStyle]="{'background-image': videoService.currentVideoPreview()}">
-        <div class="video-preview-mobile"></div>
-        <div class="video-description">
-            <h1>{{ videoService.currentVideoTitle() }}</h1>
-            <p>{{ videoService.currentVideoDescription() }}</p>
-            <button class="btn-prim btn-play">
-                <img src="icon/play.png" alt="play">
-                <span>Play</span>
-            </button>
-        </div>
-    </section>
-    <section class="video-content content-wrapper">
-        @for (genre of videoGenres; track $index) {
-            <div class="video-genre">
-                <h5>{{ genre.title }}</h5>
-                <div class="video-container">
-                    @for (video of genre.videos; track $index) {
-                        <img (click)="showVideoDescription(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
-                    }
-                </div>
+    @if (!screenService.isMobile() || showMobileDescription) {
+        <section class="video-preview content-wrapper" [ngStyle]="{'background-image': screenService.isMobile() ? 'unset' : videoService.currentVideoPreview()}">
+            <div class="video-preview-mobile" [ngStyle]="{'background-image': screenService.isMobile() ? videoService.currentVideoPreview() : 'unset', 'display': screenService.isMobile() ? 'flex': 'none'}"></div>
+            <div class="video-description">
+                <h1>{{ videoService.currentVideoTitle() }}</h1>
+                <p>{{ videoService.currentVideoDescription() }}</p>
+                <button class="btn-prim btn-play">
+                    <img src="icon/play.png" alt="play">
+                    <span>Play</span>
+                </button>
             </div>
-        }
-    </section>
+        </section>
+    }
+
+    @if (!screenService.isMobile() || !showMobileDescription) {
+        <section class="video-content content-wrapper">
+            @for (genre of videoGenres; track $index) {
+                <div class="video-genre">
+                    <h5>{{ genre.title }}</h5>
+                    <div class="video-container">
+                        @for (video of genre.videos; track $index) {
+                            <img (click)="showVideoDescription(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                        }
+                    </div>
+                </div>
+            }
+        </section>
+    }
 </div>
 
 <app-footer [type]="'video-offer'"></app-footer>

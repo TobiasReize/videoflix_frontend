@@ -26,11 +26,9 @@
 .video-preview-mobile {
     width: 100%;
     height: 50%;
-    background-image: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0)), url('../../../../public/img/video-preview.png');
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    display: none;
 }
 
 .video-preview {
@@ -105,17 +103,11 @@
 
 @media (max-width: 1025px) {
     .video-preview {
-        display: none;
         height: 100%;
         padding: 0;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-image: unset;
-    }
-
-    .video-preview-mobile {
-        display: flex;
     }
 
     .video-description {
