@@ -17,7 +17,6 @@ export class VideoOfferComponent implements OnInit {
 
   videoService = inject(VideoService);
   screenService = inject(ScreenService);
-  showMobileDescription: boolean = false;
 
   newVideos: Video[] = [];
   dramaVideos: Video[] = [];
@@ -96,12 +95,11 @@ export class VideoOfferComponent implements OnInit {
 
 
   showVideoDescription(video: Video) {
-    // tbd.
     this.videoService.setCurrentVideoTitle(video.title);
     this.videoService.setCurrentVideoDescription(video.description);
     this.videoService.setImageUrl(`url("${video.thumbnail}")`);
     if (this.screenService.isMobile()) {
-      this.showMobileDescription = true;
+      this.videoService.setShowMobileDescription(true);
     }
   }
 

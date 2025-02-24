@@ -1,7 +1,7 @@
-<app-header [type]=" showMobileDescription ? 'video-offer-mobile' : 'video-offer'"></app-header>
+<app-header [type]=" videoService.showMobileDescription() ? 'video-offer-mobile' : 'video-offer'"></app-header>
 
 <div class="content">
-    @if (!screenService.isMobile() || showMobileDescription) {
+    @if (!screenService.isMobile() || videoService.showMobileDescription()) {
         <section class="video-preview content-wrapper" [ngStyle]="{'background-image': screenService.isMobile() ? 'unset' : videoService.currentVideoPreview()}">
             <div class="video-preview-mobile" [ngStyle]="{'background-image': screenService.isMobile() ? videoService.currentVideoPreview() : 'unset', 'display': screenService.isMobile() ? 'flex': 'none'}"></div>
             <div class="video-description">
@@ -15,7 +15,7 @@
         </section>
     }
 
-    @if (!screenService.isMobile() || !showMobileDescription) {
+    @if (!screenService.isMobile() || !videoService.showMobileDescription()) {
         <section class="video-content content-wrapper">
             @for (genre of videoGenres; track $index) {
                 <div class="video-genre">

@@ -19,6 +19,9 @@ export class VideoService {
 
   readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle()}, ${this.imageUrl()}`);
 
+  private showMobileDescriptionSignal = signal<boolean>(false);
+  readonly showMobileDescription = this.showMobileDescriptionSignal.asReadonly();
+
 
   constructor() { }
 
@@ -35,6 +38,11 @@ export class VideoService {
   
   setImageUrl(url: string) {
     this.imageUrlSignal.set(url);
+  }
+
+
+  setShowMobileDescription(state: boolean) {
+    this.showMobileDescriptionSignal.set(state);
   }
 
 }

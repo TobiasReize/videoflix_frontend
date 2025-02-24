@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { VideoService } from '../../services/video-service/video.service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent {
 
   @Input() type: string = '';
+  videoService = inject(VideoService);
 
 
   constructor(private location: Location) { }
@@ -19,6 +21,11 @@ export class HeaderComponent {
 
   goBack() {
     this.location.back();
+  }
+
+
+  showVideoOffer() {
+    this.videoService.setShowMobileDescription(false);
   }
 
 }
