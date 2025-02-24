@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
   selector: 'app-videoplayer',
   standalone: true,
-  imports: [],
+  imports: [HeaderComponent],
   templateUrl: './videoplayer.component.html',
   styleUrl: './videoplayer.component.scss'
 })

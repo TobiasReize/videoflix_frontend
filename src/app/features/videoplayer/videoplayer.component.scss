@@ -1,0 +1,13 @@
+@use '../../../styles/layout';
+@use '../../../styles/color';
+@use '../../../styles/typography';
+
+:host {
+    @extend .dF-row-cc;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    background-color: color.$background-black;
+    position: relative;
+}
+
