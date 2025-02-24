@@ -1,0 +1,8 @@
+@use '../../../../styles/layout';
+
+:host {
+    @extend .dF-row-cc;
+    height: 100%;
+    width: 100%;
+}
+
