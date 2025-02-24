@@ -81,6 +81,11 @@ h5 {
     ::-webkit-scrollbar-thumb {
         border-radius: 2px;
     }
+
+    h1 {
+        font-size: 64px;
+        line-height: 83.33px;
+    }
 }
 
 @media (max-width: 700px) {
