@@ -4,17 +4,17 @@
     <div class="progress-bar"></div>
     <div class="controls">
         <div class="controls-left">
-            <span class="vjs-icon-play"></span>
-            <img src="icon/replay_10.png" alt="replay_10">
-            <img src="icon/forward_10.png" alt="forward_10">
-            <span class="vjs-icon-volume-mute"></span>
+            <span (click)="togglePlay()" [ngClass]="player.paused() ? 'vjs-icon-play' : 'vjs-icon-pause'"></span>
+            <img (click)="rewind()" src="icon/replay_10.png" alt="replay_10">
+            <img (click)="fastForward()" src="icon/forward_10.png" alt="forward_10">
+            <span (click)="toggleMute()" [ngClass]="player.muted() ? 'vjs-icon-volume-mute' : 'vjs-icon-volume-high'"></span>
         </div>
         <div class="controls-middle">
             <span>Majestic whales</span>
         </div>
         <div class="controls-right">
             <img src="icon/speed.png" alt="speed">
-            <span class="vjs-icon-fullscreen-enter"></span>
+            <span (click)="toggleFullscreen()" [ngClass]="player.isFullscreen() ? 'vjs-icon-fullscreen-exit' : 'vjs-icon-fullscreen-enter'"></span>
         </div>
     </div>
 </div>
