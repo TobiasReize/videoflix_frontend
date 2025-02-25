@@ -2,7 +2,57 @@
 
 :host {
     @extend .dF-row-cc;
-    height: 100%;
+    height: auto;
+    width: 100%;
+    position: relative;
+}
+
+.custom-controls {
+    @extend .dF-column-cc;
+    gap: 16px;
+    padding-bottom: 28px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
 }
 
+.custom-controls .progress-bar {
+    @extend .dF-row-cc;
+    width: 100%;
+    max-width: 1920px;
+}
+
+.custom-controls .controls {
+    @extend .dF-jc-space-between;
+    width: 100%;
+    max-width: 1920px;
+
+    span {
+        font-size: 48px;
+        line-height: 1;
+    }
+
+    img {
+        height: 48px;
+        width: 48px;
+    }
+}
+
+.custom-controls .controls-left, .custom-controls .controls-right {
+    @extend .dF-row-cc;
+    gap: 24px;
+
+    > *:hover {
+        cursor: pointer;
+        filter: drop-shadow(0px 0px 6px white);
+    }
+}
+
+.custom-controls .controls-middle {
+    > span {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 31.25px;
+    }
+}

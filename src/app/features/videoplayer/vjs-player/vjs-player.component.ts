@@ -1,6 +1,7 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
+import { VideoService } from '../../../services/video-service/video.service';
 
 @Component({
   selector: 'app-vjs-player',
@@ -11,6 +12,7 @@ import Player from 'video.js/dist/types/player';
 })
 export class VjsPlayerComponent implements OnInit, OnDestroy {
 
+  videoService = inject(VideoService);
   player!: Player;
   @ViewChild('target', {static: true}) target!: ElementRef<HTMLVideoElement>;
   @Input() options!: {
