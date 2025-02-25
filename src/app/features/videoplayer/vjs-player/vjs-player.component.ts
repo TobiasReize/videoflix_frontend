@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 
@@ -12,7 +12,7 @@ import Player from 'video.js/dist/types/player';
 export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   player!: Player;
-  @ViewChild('target', {static: true}) target!: ElementRef;
+  @ViewChild('target', {static: true}) target!: ElementRef<HTMLVideoElement>;
   @Input() options!: {
     fluid: boolean,
     aspectRatio: string,
@@ -28,6 +28,10 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
       console.log('onPlayerReady', this);
+      
+      this.on('ended', function() {
+        videojs.log('Awww...over so soon?!');
+      });
     });
   }
 
