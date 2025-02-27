@@ -15,7 +15,9 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   videoService = inject(VideoService);
   player!: Player;
-  @ViewChild('target', {static: true}) target!: ElementRef<HTMLVideoElement>;
+  isFullscreen: boolean = false;
+  @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
+  @ViewChild('videoContainer') videoContainer!: ElementRef;
   @Input() options!: {
     fluid: boolean,
     aspectRatio: string,
@@ -29,7 +31,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
+    this.player = videojs(this.videoPlayer.nativeElement, this.options, function onPlayerReady() {
       console.log('onPlayerReady', this);
       
       this.on('ended', function() {
@@ -79,8 +81,14 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   toggleFullscreen() {
     if (this.player) {
-      const isFullscreen = this.player.isFullscreen();
-      isFullscreen ? this.player.exitFullscreen() : this.player.requestFullscreen();
+      const videoWrapper = this.videoContainer.nativeElement;
+      if (!document.fullscreenElement) {
+        videoWrapper.requestFullscreen();
+        this.isFullscreen = true;
+      } else {
+        document.exitFullscreen();
+        this.isFullscreen = false;
+      }
     }
   }
 

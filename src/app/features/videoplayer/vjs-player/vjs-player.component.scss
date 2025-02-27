@@ -2,8 +2,14 @@
 
 :host {
     @extend .dF-row-cc;
-    height: auto;
+    height: 100%;
     width: 100%;
+}
+
+.video-container {
+    @extend .dF-column-cc;
+    width: 100%;
+    height: auto;
     position: relative;
 }
 
@@ -55,4 +61,13 @@
         font-weight: 700;
         line-height: 31.25px;
     }
+}
+
+.video-container:fullscreen .custom-controls,
+.video-container:-webkit-full-screen .custom-controls { /* Safari */
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
