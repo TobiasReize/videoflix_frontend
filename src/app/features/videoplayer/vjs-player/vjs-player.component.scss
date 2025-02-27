@@ -1,4 +1,6 @@
 @use '../../../../styles/layout';
+@use '../../../../styles/color';
+@use '../../../../styles/typography';
 
 :host {
     @extend .dF-row-cc;
@@ -25,8 +27,42 @@
 
 .custom-controls .progress-bar {
     @extend .dF-row-cc;
+    gap: 12px;
     width: 100%;
     max-width: 1920px;
+}
+
+.custom-controls .progress-bar-track {
+    @extend .dF-row-cc;
+    flex: 1;
+    height: 4px;
+    background-color: color.$video-progressbar-track;
+    position: relative;
+}
+
+.custom-controls .progress-bar-track-loaded {
+    height: 4px;
+    width: 100px;   /* tbd. calc */
+    background-color: color.$video-progressbar-loaded;
+    position: absolute;
+    top: 0;
+    left: 0;        /* tbd. calc */
+}
+
+.custom-controls .progress-bar-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: color.$main-color;
+    position: absolute;
+    top: -4px;
+    left: 0;        /* tbd. calc */
+}
+
+.custom-controls .progress-time {
+    @extend .font-style-1;
+    line-height: 1;
+    color: color.$video-progressbar-track;
 }
 
 .custom-controls .controls {

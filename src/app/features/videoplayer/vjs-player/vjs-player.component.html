@@ -2,7 +2,13 @@
     <video #videoPlayer class="vjs-custom-style video-js" controls muted playsinline preload="none"></video>
 
     <div class="custom-controls">
-        <div class="progress-bar"></div>
+        <div class="progress-bar">
+            <div class="progress-bar-track">
+                <div class="progress-bar-track-loaded"></div>
+                <div class="progress-bar-thumb"></div>
+            </div>
+            <div class="progress-time">1:00:00</div>
+        </div>
         <div class="controls">
             <div class="controls-left">
                 <span (click)="togglePlay()" [ngClass]="player.paused() ? 'vjs-icon-play' : 'vjs-icon-pause'"></span>
