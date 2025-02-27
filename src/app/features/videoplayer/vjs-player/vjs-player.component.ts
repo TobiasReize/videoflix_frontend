@@ -17,6 +17,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   player!: Player;
   isFullscreen: boolean = false;
   videoDuration: string = "00:00:00";
+  videoProgress: number = 0;
   @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoContainer') videoContainer!: ElementRef;
   @Input() options!: {
@@ -35,7 +36,8 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
     this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
       console.log('onPlayerReady', this);
 
-      this.player.on('timeupdate', () => { 
+      this.player.on('timeupdate', () => {
+        this.videoProgress = ((this.player.currentTime() ?? 0) / (this.player.duration() ?? 0)) * 100;
         this.videoDuration = this.formatTime(this.player.remainingTime());
       });
       
@@ -64,7 +66,6 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
       const newTime = (this.player.currentTime() ?? 0) + 10;
       this.player.currentTime(newTime);
     }
-    console.log('currentTime:', this.player.currentTime());
   }
 
 
@@ -73,7 +74,6 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
       const newTime = (this.player.currentTime() ?? 0) - 10;
       this.player.currentTime(newTime);
     }
-    console.log('currentTime:', this.player.currentTime());
   }
 
 
@@ -100,10 +100,10 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
 
   formatTime(seconds: number) {
-    seconds = Math.abs(seconds);
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = Math.floor(seconds % 60);
+    const totalSeconds = seconds > 0 ? Math.ceil(seconds) : 0;
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const secs = Math.floor(totalSeconds % 60);
     return `${hours.toString().padStart(2, "0")}:` + `${minutes.toString().padStart(2, "0")}:` + `${secs.toString().padStart(2, "0")}`;
   }
 
