@@ -1,5 +1,5 @@
 <div #videoContainer class="video-container">
-    <video #videoPlayer class="vjs-custom-style video-js" controls muted playsinline preload="none"></video>
+    <video (click)="togglePlay()" #videoPlayer class="vjs-custom-style video-js" controls muted playsinline preload="none"></video>
 
     <div class="custom-controls">
         <div class="progress-bar">
