@@ -42,11 +42,10 @@
 
 .custom-controls .progress-bar-track-loaded {
     height: 4px;
-    width: 100px;   /* tbd. calc */
     background-color: color.$video-progressbar-loaded;
     position: absolute;
     top: 0;
-    left: 0;        /* tbd. calc */
+    left: 0;
 }
 
 .custom-controls .progress-bar-thumb {

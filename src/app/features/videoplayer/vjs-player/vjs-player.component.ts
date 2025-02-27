@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 import { VideoService } from '../../../services/video-service/video.service';
@@ -32,9 +32,15 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   };
 
 
+  @HostListener('document:fullscreenchange')
+  onFullScreenChange() {
+    this.isFullscreen = Boolean(document.fullscreenElement);
+  }
+
+
   ngOnInit(): void {
     this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
-      console.log('onPlayerReady', this);
+      // console.log('onPlayerReady', this);
 
       this.player.on('timeupdate', () => {
         this.videoProgress = ((this.player.currentTime() ?? 0) / (this.player.duration() ?? 0)) * 100;

@@ -4,7 +4,7 @@
     <div class="custom-controls">
         <div class="progress-bar">
             <div class="progress-bar-track">
-                <div class="progress-bar-track-loaded"></div>
+                <div class="progress-bar-track-loaded" [style.width]="videoProgress + '%'"></div>
                 <div class="progress-bar-thumb" [style.left]="videoProgress + '%'"></div>
             </div>
             <div class="progress-time">{{ videoDuration }}</div>
