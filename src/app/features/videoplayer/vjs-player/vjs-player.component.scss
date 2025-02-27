@@ -60,9 +60,11 @@
 }
 
 .custom-controls .progress-time {
+    @extend .dF-row-cc;
     @extend .font-style-1;
     line-height: 1;
-    color: color.$video-progressbar-track;
+    color: color.$video-progressbar-loaded;
+    width: 60px;
 }
 
 .custom-controls .controls {

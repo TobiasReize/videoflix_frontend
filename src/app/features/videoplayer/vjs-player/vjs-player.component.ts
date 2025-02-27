@@ -16,6 +16,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   videoService = inject(VideoService);
   player!: Player;
   isFullscreen: boolean = false;
+  videoDuration: string = "00:00:00";
   @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoContainer') videoContainer!: ElementRef;
   @Input() options!: {
@@ -31,12 +32,17 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.player = videojs(this.videoPlayer.nativeElement, this.options, function onPlayerReady() {
+    this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
       console.log('onPlayerReady', this);
+
+      this.player.on('timeupdate', () => { 
+        this.videoDuration = this.formatTime(this.player.remainingTime());
+      });
       
-      this.on('ended', function() {
+      this.player.on('ended', () => {
         videojs.log('Awww...over so soon?!');
       });
+
     });
   }
 
@@ -90,6 +96,15 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
         this.isFullscreen = false;
       }
     }
+  }
+
+
+  formatTime(seconds: number) {
+    seconds = Math.abs(seconds);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${hours.toString().padStart(2, "0")}:` + `${minutes.toString().padStart(2, "0")}:` + `${secs.toString().padStart(2, "0")}`;
   }
 
 }
