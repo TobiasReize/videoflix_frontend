@@ -21,10 +21,13 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoContainer') videoContainer!: ElementRef;
   @Input() options!: {
-    fluid: boolean,
     aspectRatio: string,
     autoplay: boolean,
     controls: boolean,
+    fluid: boolean,
+    muted: boolean,
+    playsinline: boolean,
+    preload: string,
     sources: {
         src: string,
         type: string,
@@ -41,7 +44,8 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
       // console.log('onPlayerReady', this);
-      // console.log('volume:', this.player.volume());
+
+      this.player.volume(0);
 
       this.player.on('timeupdate', () => {
         this.videoProgress = ((this.player.currentTime() ?? 0) / (this.player.duration() ?? 0)) * 100;

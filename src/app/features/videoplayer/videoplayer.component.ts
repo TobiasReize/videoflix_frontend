@@ -11,4 +11,20 @@ import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
 })
 export class VideoplayerComponent {
 
+  setUpOptions = {
+    aspectRatio: '16:9',
+    autoplay: false,
+    controls: false,
+    fluid: true,
+    muted: true,
+    playsinline: true,
+    preload: 'auto',
+    sources: [
+      {
+        src: '/video/bird.mp4',
+        type: 'video/mp4'
+      }
+    ]
+  }
+
 }
