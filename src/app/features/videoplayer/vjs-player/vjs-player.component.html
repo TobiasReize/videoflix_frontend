@@ -1,5 +1,5 @@
 <div #videoContainer class="video-container">
-    <video (click)="togglePlay()" #videoPlayer class="vjs-custom-style video-js" controls muted playsinline preload="none"></video>
+    <video (click)="togglePlay()" #videoPlayer class="vjs-custom-style video-js" muted playsinline preload="none"></video>
 
     <div class="custom-controls">
         <div class="progress-bar">
@@ -14,7 +14,10 @@
                 <span (click)="togglePlay()" [ngClass]="player.paused() ? 'vjs-icon-play' : 'vjs-icon-pause'"></span>
                 <img (click)="rewind()" src="icon/replay_10.png" alt="replay_10">
                 <img (click)="fastForward()" src="icon/forward_10.png" alt="forward_10">
-                <span (click)="toggleMute()" [ngClass]="player.muted() ? 'vjs-icon-volume-mute' : 'vjs-icon-volume-high'"></span>
+                <div class="volume-container">
+                    <span (click)="toggleMute()" class="volume-icon" [ngClass]="player.muted() ? 'vjs-icon-volume-mute' : 'vjs-icon-volume-high'"></span>
+                    <input class="volume-track" type="range" name="volume" min="0" max="100" step="5" [value]="(player.volume() || 0) * 100" (input)="setVolume($event)">
+                </div>
             </div>
             <div class="controls-middle">
                 <span>Majestic whales</span>
