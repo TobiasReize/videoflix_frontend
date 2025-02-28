@@ -15,7 +15,7 @@
                 <img (click)="rewind()" src="icon/replay_10.png" alt="replay_10">
                 <img (click)="fastForward()" src="icon/forward_10.png" alt="forward_10">
                 <div class="volume-container">
-                    <span (click)="toggleMute()" class="volume-icon" [ngClass]="player.muted() ? 'vjs-icon-volume-mute' : 'vjs-icon-volume-high'"></span>
+                    <span (click)="toggleMute()" class="volume-icon" [ngClass]="getVolumeIcon()"></span>
                     <input class="volume-track" type="range" name="volume" min="0" max="100" step="5" [value]="(player.volume() || 0) * 100" (input)="setVolume($event)">
                 </div>
             </div>

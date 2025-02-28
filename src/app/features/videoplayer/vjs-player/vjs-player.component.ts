@@ -51,6 +51,8 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
         this.videoProgress = ((this.player.currentTime() ?? 0) / (this.player.duration() ?? 0)) * 100;
         this.videoDuration = this.formatTime(this.player.remainingTime());
       });
+
+      this.player.on('volumechange', () => this.getVolumeIcon());
       
       this.player.on('ended', () => {
         videojs.log('Awww...over so soon?!');
@@ -88,11 +90,39 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   }
 
 
+  getVolumeIcon() {
+    const vol = this.player.volume() ?? 0;
+    if (this.player.muted() || vol == 0) {
+      return 'vjs-icon-volume-mute';
+    } else if (vol < 0.25) {
+      return 'vjs-icon-volume-low';
+    } else if (vol < 0.75) {
+      return 'vjs-icon-volume-mid';
+    } else {
+      return 'vjs-icon-volume-high';
+    }
+  }
+
+
   toggleMute() {
     if (this.player) {
       const isMuted = this.player.muted();
-      this.player.muted(!isMuted);
+      if (isMuted) {
+        this.player.volume(0.5);
+        this.player.muted(false);
+      } else {
+        this.player.volume(0);
+        this.player.muted(true);
+      }
     }
+  }
+
+
+  setVolume(event: Event) {
+    const input = (event.target as HTMLInputElement).value;
+    const value = (Number(input) / 100);
+    this.player.muted(false);
+    this.player.volume(value);
   }
 
 
@@ -116,14 +146,6 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const secs = Math.floor(totalSeconds % 60);
     return `${hours.toString().padStart(2, "0")}:` + `${minutes.toString().padStart(2, "0")}:` + `${secs.toString().padStart(2, "0")}`;
-  }
-
-
-  setVolume(event: Event) {
-    const input = (event.target as HTMLInputElement).value;
-    const value = (Number(input) / 100);
-    this.player.volume(value);
-    console.log('volume:', this.player.volume());
   }
 
 }
