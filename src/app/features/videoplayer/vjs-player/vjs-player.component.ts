@@ -19,7 +19,8 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   videoDuration: string = "00:00:00";
   videoProgress: number = 0;
   @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
-  @ViewChild('videoContainer') videoContainer!: ElementRef;
+  @ViewChild('videoContainer') videoContainer!: ElementRef<HTMLElement>;
+  @ViewChild('progressBar') progressBar!: ElementRef<HTMLElement>;
   @Input() options!: {
     aspectRatio: string,
     autoplay: boolean,
@@ -137,6 +138,16 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
         this.isFullscreen = false;
       }
     }
+  }
+
+
+  setVideoProgress(event: MouseEvent) {
+    console.log('event:', event);
+    const bar = this.progressBar.nativeElement;
+    const rect = bar.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const newTime = (offsetX / rect.width) * (this.player.duration() ?? 0);
+    this.player.currentTime(newTime);
   }
 
 
