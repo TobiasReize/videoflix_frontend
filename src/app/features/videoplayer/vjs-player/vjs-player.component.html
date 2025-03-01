@@ -23,7 +23,17 @@
                 <span>Majestic whales</span>
             </div>
             <div class="controls-right">
-                <img src="icon/speed.png" alt="speed">
+                <div class="video-speed-container">
+                    <img (click)="selectSpeed()" src="icon/speed.png" alt="speed">
+                    @if (showSpeed) {
+                        <div class="video-speed">
+                            <span>120p</span>
+                            <span>360p</span>
+                            <span>720p</span>
+                            <span>1080p</span>
+                        </div>
+                    }
+                </div>
                 <span (click)="toggleFullscreen()" [ngClass]="isFullscreen ? 'vjs-icon-fullscreen-exit' : 'vjs-icon-fullscreen-enter'"></span>
             </div>
         </div>

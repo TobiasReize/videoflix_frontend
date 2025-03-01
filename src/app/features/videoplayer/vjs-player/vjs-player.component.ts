@@ -18,6 +18,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   isFullscreen: boolean = false;
   videoDuration: string = "00:00:00";
   videoProgress: number = 0;
+  showSpeed: boolean = false;
   @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoContainer') videoContainer!: ElementRef<HTMLElement>;
   @ViewChild('progressBar') progressBar!: ElementRef<HTMLElement>;
@@ -44,8 +45,6 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
-      // console.log('onPlayerReady', this);
-
       this.player.volume(0);
 
       this.player.on('timeupdate', () => {
@@ -58,7 +57,6 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
       this.player.on('ended', () => {
         videojs.log('Awww...over so soon?!');
       });
-
     });
   }
 
@@ -72,6 +70,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   togglePlay() {
     this.player.paused() ? this.player.play() : this.player.pause();
+    this.showSpeed = false;
   }
 
 
@@ -141,8 +140,12 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   }
 
 
+  selectSpeed() {
+    this.showSpeed = !this.showSpeed;
+  }
+
+
   setVideoProgress(event: MouseEvent) {
-    console.log('event:', event);
     const bar = this.progressBar.nativeElement;
     const rect = bar.getBoundingClientRect();
     const offsetX = event.clientX - rect.left;

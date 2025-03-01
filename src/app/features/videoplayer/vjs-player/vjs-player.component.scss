@@ -33,6 +33,15 @@ input[type="range"] {
     width: 100%;
 }
 
+.video-container:fullscreen .custom-controls,
+.video-container:-webkit-full-screen .custom-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
 .custom-controls .progress-bar {
     @extend .dF-row-cc;
     gap: 12px;
@@ -99,20 +108,25 @@ input[type="range"] {
 
 .custom-controls .controls-left {
     @extend .dF-jc-flex-start;
-}
-
-.custom-controls .controls-right {
-    @extend .dF-jc-flex-end;
-}
-
-.custom-controls .controls-left, .custom-controls .controls-right {
-    gap: 24px;
-    flex: 1;
 
     > span:hover, > img:hover {
         cursor: pointer;
         filter: drop-shadow(0px 0px 6px white);
     }
+}
+
+.custom-controls .controls-right {
+    @extend .dF-jc-flex-end;
+
+    span:hover, img:hover {
+        cursor: pointer;
+        filter: drop-shadow(0px 0px 6px white);
+    }
+}
+
+.custom-controls .controls-left, .custom-controls .controls-right {
+    gap: 24px;
+    flex: 1;
 }
 
 .custom-controls .volume-container {
@@ -175,11 +189,23 @@ input[type="range"] {
     }
 }
 
-.video-container:fullscreen .custom-controls,
-.video-container:-webkit-full-screen .custom-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  z-index: 10;
+.custom-controls .video-speed-container {
+    @extend .dF-row-cc;
+    position: relative;
+}
+
+.custom-controls .video-speed {
+    @extend .dF-column-jc-flex-end;
+    position: absolute;
+    bottom: 50px;
+    left: -21px;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 16px;
+    border-radius: 16px;
+
+    > span {
+        font-size: 18px;
+        line-height: 1;
+    }
 }
