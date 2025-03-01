@@ -8,6 +8,13 @@
     width: 100%;
 }
 
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
 .video-container {
     @extend .dF-column-cc;
     width: 100%;
@@ -115,6 +122,36 @@
 
 .custom-controls .volume-track {
     display: none;
+    width: 150px;
+}
+
+.custom-controls .volume-track::-webkit-slider-runnable-track {  /* Chrome, Safari, Opera, and Edge Chromium */
+    background: color.$video-progressbar-track;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.custom-controls .volume-track::-webkit-slider-thumb {  /* Chrome, Safari, Opera, and Edge Chromium */
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: color.$main-color;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
+
+.custom-controls .volume-track::-moz-range-track {  /* Firefox */
+    background: color.$video-progressbar-track;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.custom-controls .volume-track::-moz-range-thumb {  /* Firefox */
+    background-color: color.$main-color;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border: none;
 }
 
 .custom-controls .controls-middle {
@@ -126,7 +163,7 @@
 }
 
 .video-container:fullscreen .custom-controls,
-.video-container:-webkit-full-screen .custom-controls { /* Safari */
+.video-container:-webkit-full-screen .custom-controls {
   position: absolute;
   bottom: 10px;
   left: 0;
