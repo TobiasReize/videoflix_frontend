@@ -54,6 +54,12 @@
     }
 }
 
+@media (max-width: 1025px) {
+    .videoplayer {
+        display: none;
+    }
+}
+
 @media (max-width: 700px) {
     .logo-text {
         display: none;
