@@ -39,7 +39,8 @@
             </div>
             <div class="controls-right">
                 <div class="video-speed-container">
-                    <img (click)="selectSpeed($event)" src="icon/speed.png" alt="speed">
+                    <img (click)="selectSpeed($event)" class="speed-icon" src="icon/speed.png" alt="speed">
+                    <span class="mobile-speed-text">Speed</span>
                     @if (showSpeed) {
                         <div class="speed-overlay" (click)="$event.stopPropagation();">
                             <span>120p</span>
@@ -52,5 +53,13 @@
                 <span (click)="toggleFullscreen()" [ngClass]="isFullscreen ? 'vjs-icon-fullscreen-exit' : 'vjs-icon-fullscreen-enter'"></span>
             </div>
         </div>
-    </div>    
+    </div>
+
+    @if (player.paused()) {
+        <div class="mobile-controls">
+            <img (click)="rewind()" src="icon/replay_10.png" alt="replay_10">
+            <span (click)="togglePlay()" [ngClass]="player.paused() ? 'vjs-icon-play' : 'vjs-icon-pause'"></span>
+            <img (click)="fastForward()" src="icon/forward_10.png" alt="forward_10">
+        </div>
+    }
 </div>

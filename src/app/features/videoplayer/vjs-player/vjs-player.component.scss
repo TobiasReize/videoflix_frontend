@@ -60,8 +60,7 @@ input[type="range"] {
 .custom-controls {
     @extend .dF-column-cc;
     gap: 16px;
-    padding-bottom: 28px;
-    padding-top: 10px;
+    padding: 10px 16px 28px 16px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -226,7 +225,18 @@ input[type="range"] {
 
 .custom-controls .video-speed-container {
     @extend .dF-row-cc;
+    gap: 4px;
     position: relative;
+
+    .mobile-speed-text {
+        @extend .font-style-1;
+        display: none;
+
+        &:hover {
+            filter: unset;
+            cursor: unset;
+        }
+    }
 }
 
 .custom-controls .speed-overlay {
@@ -245,9 +255,61 @@ input[type="range"] {
     }
 }
 
+.mobile-controls {
+    @extend .dF-row-cc;
+    gap: 104px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: none;
+
+    > span {
+        font-size: 48px;
+        line-height: 1;
+    }
+
+    > *:hover {
+        cursor: pointer;
+        filter: drop-shadow(0px 0px 6px white);
+    }
+}
+
 // ---------- Responsive Design ---------- //
 @media (max-width: 1025px) {
     .mobile-header {
+        display: flex;
+    }
+
+    .custom-controls {
+        .controls-middle, .controls-left {
+            display: none;
+        }
+
+        .controls {
+            justify-content: center;
+        }
+
+        .controls-right {
+            justify-content: center;
+
+            > span {
+                display: none;
+            }
+
+            .speed-icon {
+                height: 32px;
+                width: 32px;                
+            }
+
+            .mobile-speed-text {
+                display: block;
+            }
+        }
+    }
+
+    .mobile-controls {
         display: flex;
     }
 }
