@@ -94,3 +94,10 @@ h5 {
         line-height: 52.08px;
     }
 }
+
+@media (max-width: 450px) {
+    h1 {
+        font-size: 13.5vw;
+        line-height: 1.5;
+    }
+}
