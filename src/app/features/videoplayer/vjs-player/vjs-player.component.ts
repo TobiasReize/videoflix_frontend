@@ -140,8 +140,13 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   }
 
 
-  selectSpeed() {
-    this.showSpeed = !this.showSpeed;
+  selectSpeed(event: Event, state?: boolean) {
+    if (state != undefined) {
+      this.showSpeed = state;
+    } else {
+      this.showSpeed = !this.showSpeed;
+    }
+    event.stopPropagation();
   }
 
 
