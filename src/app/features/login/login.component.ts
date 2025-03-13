@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core'
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 import { FormService } from '../../services/form-service/form.service';
@@ -19,11 +19,15 @@ export class LoginComponent implements OnInit {
   isPasswordVisible: boolean = false;
   toastMsgService = inject(ToastMsgService);
   formService = inject(FormService);
+  private activeRoute = inject(ActivatedRoute);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
   
   ngOnInit(): void {
     this.toastMsgService.resetToastMsg();
+    if (this.activeRoute.snapshot.queryParamMap.get('confirmed') === 'true') {
+      this.toastMsgService.showToastMsg('ok', 'Account activated!');
+    }
   }
 
 

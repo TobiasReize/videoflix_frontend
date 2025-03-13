@@ -5,6 +5,7 @@ import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FormService } from '../../services/form-service/form.service';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -17,14 +18,20 @@ export class ResetPasswordComponent implements OnInit {
 
     formService = inject(FormService);
     toastMsgService = inject(ToastMsgService);
+    private activeRoute = inject(ActivatedRoute);
     isPasswordVisible: boolean = false;
     isPasswordRepeatVisible: boolean = false;
+    userEmail: string = '';
 
 
     ngOnInit(): void {
       this.toastMsgService.resetToastMsg();
+      if (this.activeRoute.snapshot.queryParamMap.get('email')) {
+        this.userEmail = this.activeRoute.snapshot.queryParamMap.get('email') ?? '';
+        console.log('email:', this.userEmail);
+      }
     }
-    
+
 
     showPassword(id: string, state: boolean) {
       if (id == 'password') {

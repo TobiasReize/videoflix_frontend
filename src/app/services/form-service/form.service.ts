@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastMsgService } from '../toast-msg-service/toast-msg.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class FormService {
 
   toastMsgService = inject(ToastMsgService);
   router = inject(Router);
+  http = inject(HttpClient);
   private signupEmailSignal = signal<string>('');
   readonly signupEmail = this.signupEmailSignal.asReadonly();
 
