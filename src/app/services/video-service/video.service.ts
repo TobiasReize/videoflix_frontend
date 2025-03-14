@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Video } from '../../interfaces/video.interface';
+import { config } from '../../shared/config';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,6 @@ import { Video } from '../../interfaces/video.interface';
 export class VideoService {
 
   private http = inject(HttpClient);
-  private apiUrl: string = 'http://127.0.0.1:8000/api/videos/';
   private backgroundStyle: string = 'linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0))';
 
   private currentVideoTitleSignal = signal<string>('');
@@ -18,10 +18,15 @@ export class VideoService {
   private currentVideoDescriptionSignal = signal<string>('');
   readonly currentVideoDescription = this.currentVideoDescriptionSignal.asReadonly();
 
-  private thumbnailSignal = signal<string>('');
-  readonly thumbnail = this.thumbnailSignal.asReadonly();
+  private currentThumbnailSignal = signal<string>('');
+  readonly currentThumbnail = this.currentThumbnailSignal.asReadonly();
 
-  readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, url("${this.thumbnail()}")`);
+  private currentVideoNameSignal = signal<string>('');
+  readonly currentVideoName = this.currentVideoNameSignal.asReadonly();
+
+  readonly currentVideoUrl = computed<string>(() => config.MEDIA_VIDEO_URL + this.currentVideoName() + '.mp4');
+
+  readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, url("${this.currentThumbnail()}")`);
 
   private showMobileDescriptionSignal = signal<boolean>(false);
   readonly showMobileDescription = this.showMobileDescriptionSignal.asReadonly();
@@ -40,8 +45,13 @@ export class VideoService {
   }
   
   
-  setThumbnail(url: string) {
-    this.thumbnailSignal.set(url);
+  setCurrentThumbnail(url: string) {
+    this.currentThumbnailSignal.set(url);
+  }
+
+
+  setCurrentVideoName(name: string) {
+    this.currentVideoNameSignal.set(name);
   }
 
 
@@ -50,8 +60,21 @@ export class VideoService {
   }
 
 
+  // Hilfsfunktionen:
+  setVideoNameFromPath(video_file_url: string) {
+    this.setCurrentVideoName(this.getVideoName(video_file_url));
+  }
+
+
   getVideos(): Observable<Video[]> {
-    return this.http.get<Video[]>(this.apiUrl);
+    return this.http.get<Video[]>(config.VIDEO_URL);
+  }
+
+
+  getVideoName(video_file_url: string): string {
+    const prefix = '/media/videos/';
+    const suffix = '.mp4';
+    return video_file_url.slice(prefix.length, -suffix.length);
   }
 
 }

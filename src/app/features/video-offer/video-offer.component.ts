@@ -42,7 +42,7 @@ export class VideoOfferComponent implements OnInit {
         this.videosByGenre[genre].push(video);
       });
     });
-    console.log('videosByGenre:', this.videosByGenre);
+    // console.log('videosByGenre:', this.videosByGenre);
   }
 
 
@@ -50,16 +50,17 @@ export class VideoOfferComponent implements OnInit {
     const newVideos = this.videosByGenre['New on Videoflix'];
     const randomIndex = Math.floor(Math.random() * newVideos.length);
     const initialVideo = newVideos[randomIndex];
-    this.videoService.setCurrentVideoTitle(initialVideo['title']);
-    this.videoService.setCurrentVideoDescription(initialVideo['description']);
-    this.videoService.setThumbnail(initialVideo['thumbnail']);
+    this.setVideoChoice(initialVideo);
+    // console.log('currentVideoName:', this.videoService.currentVideoName());
+    // console.log('currentVideoUrl:', this.videoService.currentVideoUrl());
   }
 
 
-  showVideoDescription(video: Video) {
-    this.videoService.setCurrentVideoTitle(video.title);
-    this.videoService.setCurrentVideoDescription(video.description);
-    this.videoService.setThumbnail(video.thumbnail);
+  setVideoChoice(video: Video) {
+    this.videoService.setCurrentVideoTitle(video['title']);
+    this.videoService.setCurrentVideoDescription(video['description']);
+    this.videoService.setCurrentThumbnail(video['thumbnail']);
+    this.videoService.setVideoNameFromPath(video['video_file_url']);
     if (this.screenService.isMobile()) {
       this.videoService.setShowMobileDescription(true);
     }

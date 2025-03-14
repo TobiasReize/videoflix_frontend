@@ -22,7 +22,7 @@
                     <h5>{{ genre }}</h5>
                     <div class="video-container">
                         @for (video of videosByGenre[genre]; track $index) {
-                            <img (click)="showVideoDescription(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                            <img (click)="setVideoChoice(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
                         }
                     </div>
                 </div>
