@@ -1,9 +1,16 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Video } from '../../interfaces/video.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
+
+  http = inject(HttpClient);
+  apiUrl: string = 'http://127.0.0.1:8000/api/videos/';
+  backgroundStyle: string = 'linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0))';
 
   private currentVideoTitleSignal = signal<string>('');
   readonly currentVideoTitle = this.currentVideoTitleSignal.asReadonly();
@@ -11,13 +18,10 @@ export class VideoService {
   private currentVideoDescriptionSignal = signal<string>('');
   readonly currentVideoDescription = this.currentVideoDescriptionSignal.asReadonly();
 
-  private backgroundStyleSignal = signal<string>('linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0))');
-  readonly backgroundStyle = this.backgroundStyleSignal.asReadonly();
+  private thumbnailSignal = signal<string>('');
+  readonly thumbnail = this.thumbnailSignal.asReadonly();
 
-  private imageUrlSignal = signal<string>('');
-  readonly imageUrl = this.imageUrlSignal.asReadonly();
-
-  readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle()}, ${this.imageUrl()}`);
+  readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, ${this.thumbnail()}`);
 
   private showMobileDescriptionSignal = signal<boolean>(false);
   readonly showMobileDescription = this.showMobileDescriptionSignal.asReadonly();
@@ -36,13 +40,18 @@ export class VideoService {
   }
   
   
-  setImageUrl(url: string) {
-    this.imageUrlSignal.set(url);
+  setThumbnail(url: string) {
+    this.thumbnailSignal.set(url);
   }
 
 
   setShowMobileDescription(state: boolean) {
     this.showMobileDescriptionSignal.set(state);
+  }
+
+
+  getVideos(): Observable<Video[]> {
+    return this.http.get<Video[]>(this.apiUrl);
   }
 
 }

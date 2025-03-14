@@ -17,11 +17,11 @@
 
     @if (!screenService.isMobile() || !videoService.showMobileDescription()) {
         <section class="video-content content-wrapper">
-            @for (genre of videoGenres; track $index) {
+            @for (genre of getGenres(); track $index) {
                 <div class="video-genre">
-                    <h5>{{ genre.title }}</h5>
+                    <h5>{{ genre }}</h5>
                     <div class="video-container">
-                        @for (video of genre.videos; track $index) {
+                        @for (video of videosByGenre[genre]; track $index) {
                             <img (click)="showVideoDescription(video)" class="thumbnail" src="{{ video.thumbnail }}" alt="{{ video.title }}">
                         }
                     </div>
