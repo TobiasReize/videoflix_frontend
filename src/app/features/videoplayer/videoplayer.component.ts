@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
+import { VideoService } from '../../services/video-service/video.service';
 
 @Component({
   selector: 'app-videoplayer',
@@ -10,6 +11,8 @@ import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
   styleUrl: './videoplayer.component.scss'
 })
 export class VideoplayerComponent {
+
+  videoService = inject(VideoService);
 
   setUpOptions = {
     aspectRatio: '16:9',
@@ -21,7 +24,7 @@ export class VideoplayerComponent {
     preload: 'auto',
     sources: [
       {
-        src: '/video/bird.mp4',
+        src: this.videoService.currentVideoUrl(),
         type: 'video/mp4'
       }
     ]

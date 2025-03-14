@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { VideoService } from '../../services/video-service/video.service';
@@ -10,7 +11,7 @@ import { VideoGenre } from '../../interfaces/video-genre.interface';
 @Component({
   selector: 'app-video-offer',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule],
+  imports: [HeaderComponent, FooterComponent, CommonModule, RouterLink],
   templateUrl: './video-offer.component.html',
   styleUrl: './video-offer.component.scss'
 })
