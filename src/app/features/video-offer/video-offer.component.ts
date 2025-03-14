@@ -42,12 +42,14 @@ export class VideoOfferComponent implements OnInit {
         this.videosByGenre[genre].push(video);
       });
     });
-    console.log('Genres:', this.videosByGenre);
+    console.log('videosByGenre:', this.videosByGenre);
   }
 
 
   setInitialVideo() {
-    const initialVideo = this.videosByGenre['neu'][0];
+    const newVideos = this.videosByGenre['New on Videoflix'];
+    const randomIndex = Math.floor(Math.random() * newVideos.length);
+    const initialVideo = newVideos[randomIndex];
     this.videoService.setCurrentVideoTitle(initialVideo['title']);
     this.videoService.setCurrentVideoDescription(initialVideo['description']);
     this.videoService.setThumbnail(initialVideo['thumbnail']);
@@ -65,7 +67,13 @@ export class VideoOfferComponent implements OnInit {
 
 
   getGenres(): string[] {
-    return Object.keys(this.videosByGenre);
+    const genres = Object.keys(this.videosByGenre);
+    genres.sort((a, b) => {
+      if (a === 'New on Videoflix') return -1;
+      if (b === 'New on Videoflix') return 1;
+      return a.localeCompare(b);
+    });
+    return genres;
   }
 
 }
