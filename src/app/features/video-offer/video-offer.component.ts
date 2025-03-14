@@ -50,14 +50,14 @@ export class VideoOfferComponent implements OnInit {
     const initialVideo = this.videosByGenre['neu'][0];
     this.videoService.setCurrentVideoTitle(initialVideo['title']);
     this.videoService.setCurrentVideoDescription(initialVideo['description']);
-    this.videoService.setThumbnail(`url(${initialVideo['thumbnail']})`);
+    this.videoService.setThumbnail(initialVideo['thumbnail']);
   }
 
 
   showVideoDescription(video: Video) {
     this.videoService.setCurrentVideoTitle(video.title);
     this.videoService.setCurrentVideoDescription(video.description);
-    this.videoService.setThumbnail(`url("${video.thumbnail}")`);
+    this.videoService.setThumbnail(video.thumbnail);
     if (this.screenService.isMobile()) {
       this.videoService.setShowMobileDescription(true);
     }
