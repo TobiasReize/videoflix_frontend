@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 import { VideoService } from '../../../services/video-service/video.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-vjs-player',

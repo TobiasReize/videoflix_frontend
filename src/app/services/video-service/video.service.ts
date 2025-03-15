@@ -21,7 +21,7 @@ export class VideoService {
   private currentThumbnailSignal = signal<string>('');
   readonly currentThumbnail = this.currentThumbnailSignal.asReadonly();
 
-  private currentVideoNameSignal = signal<string>('');
+  private currentVideoNameSignal = signal<string>(localStorage.getItem('currentVideoName') || '');
   readonly currentVideoName = this.currentVideoNameSignal.asReadonly();
 
   readonly currentVideoUrl = computed<string>(() => config.MEDIA_VIDEO_URL + this.currentVideoName() + '.mp4');
@@ -52,6 +52,7 @@ export class VideoService {
 
   setCurrentVideoName(name: string) {
     this.currentVideoNameSignal.set(name);
+    localStorage.setItem('currentVideoName', name);
   }
 
 
