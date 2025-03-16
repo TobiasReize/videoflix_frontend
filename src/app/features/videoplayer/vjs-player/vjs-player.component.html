@@ -62,4 +62,8 @@
             <img (click)="fastForward()" src="icon/forward_10.png" alt="forward_10">
         </div>
     }
+
+    @if (toastMsgService.toastState() != 'unset') {
+        <app-toast-msg></app-toast-msg>
+    }
 </div>

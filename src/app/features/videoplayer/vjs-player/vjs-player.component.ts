@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 import { VideoService } from '../../../services/video-service/video.service';
-import { config } from '../../../shared/config';
 import { ToastMsgService } from '../../../services/toast-msg-service/toast-msg.service';
+import { ToastMsgComponent } from "../../../shared/toast-msg/toast-msg.component";
 
 @Component({
   selector: 'app-vjs-player',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ToastMsgComponent],
   templateUrl: './vjs-player.component.html',
   styleUrl: './vjs-player.component.scss',
 })

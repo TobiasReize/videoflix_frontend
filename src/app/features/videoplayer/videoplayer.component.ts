@@ -2,13 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
 import { VideoService } from '../../services/video-service/video.service';
-import { ToastMsgComponent } from "../../shared/toast-msg/toast-msg.component";
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 
 @Component({
   selector: 'app-videoplayer',
   standalone: true,
-  imports: [HeaderComponent, VjsPlayerComponent, ToastMsgComponent],
+  imports: [HeaderComponent, VjsPlayerComponent],
   templateUrl: './videoplayer.component.html',
   styleUrl: './videoplayer.component.scss'
 })

@@ -1,7 +1,3 @@
 <app-header [type]="'videoplayer'"></app-header>
 
 <app-vjs-player [options]="setUpOptions"></app-vjs-player>
-
-@if (toastMsgService.toastState() != 'unset') {
-    <app-toast-msg></app-toast-msg>
-}
