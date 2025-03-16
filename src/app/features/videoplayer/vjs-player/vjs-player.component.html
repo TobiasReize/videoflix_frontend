@@ -43,10 +43,10 @@
                     <span class="mobile-format-text">Speed</span>
                     @if (showVideoFormat) {
                         <div class="format-overlay" (click)="$event.stopPropagation();">
-                            <span (click)="selectVideoFormat('_120p')">120p</span>
-                            <span (click)="selectVideoFormat('_360p')">360p</span>
-                            <span (click)="selectVideoFormat('_720p')">720p</span>
-                            <span (click)="selectVideoFormat('_1080p')">1080p</span>
+                            <span (click)="selectVideoFormat('120p')" [ngClass]="{'highlighted-format': videoService.currentVideoFormat() == '120p'}">120p</span>
+                            <span (click)="selectVideoFormat('360p')" [ngClass]="{'highlighted-format': videoService.currentVideoFormat() == '360p'}">360p</span>
+                            <span (click)="selectVideoFormat('720p')" [ngClass]="{'highlighted-format': videoService.currentVideoFormat() == '720p'}">720p</span>
+                            <span (click)="selectVideoFormat('1080p')" [ngClass]="{'highlighted-format': videoService.currentVideoFormat() == '1080p'}">1080p</span>
                         </div>
                     }
                 </div>

@@ -24,7 +24,10 @@ export class VideoService {
   private currentVideoNameSignal = signal<string>(localStorage.getItem('currentVideoName') || '');
   readonly currentVideoName = this.currentVideoNameSignal.asReadonly();
 
-  readonly currentVideoUrl = computed<string>(() => config.MEDIA_VIDEO_URL + this.currentVideoName() + '.mp4');
+  private currentVideoFormatSignal = signal<string>(localStorage.getItem('currentVideoFormat') || '');
+  readonly currentVideoFormat = this.currentVideoFormatSignal.asReadonly();
+
+  readonly currentVideoUrl = computed<string>(() => config.MEDIA_VIDEO_URL + this.currentVideoName() + '_' + this.currentVideoFormat() + '.mp4');
 
   readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, url("${this.currentThumbnail()}")`);
 
@@ -53,6 +56,12 @@ export class VideoService {
   setCurrentVideoName(name: string) {
     this.currentVideoNameSignal.set(name);
     localStorage.setItem('currentVideoName', name);
+  }
+
+
+  setCurrentVideoFormat(format: string) {
+    this.currentVideoFormatSignal.set(format);
+    localStorage.setItem('currentVideoFormat', format);
   }
 
 

@@ -154,7 +154,8 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
 
   selectVideoFormat(format: string) {
-    this.player.src({type: 'video/mp4', src: config.MEDIA_VIDEO_URL + this.videoService.currentVideoName() + format + '.mp4'});
+    this.videoService.setCurrentVideoFormat(format);
+    this.player.src({type: 'video/mp4', src: this.videoService.currentVideoUrl()});    
   }
 
 

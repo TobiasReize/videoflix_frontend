@@ -43,7 +43,6 @@ export class VideoOfferComponent implements OnInit {
         this.videosByGenre[genre].push(video);
       });
     });
-    // console.log('videosByGenre:', this.videosByGenre);
   }
 
 
@@ -52,8 +51,6 @@ export class VideoOfferComponent implements OnInit {
     const randomIndex = Math.floor(Math.random() * newVideos.length);
     const initialVideo = newVideos[randomIndex];
     this.setVideoChoice(initialVideo);
-    // console.log('currentVideoName:', this.videoService.currentVideoName());
-    // console.log('currentVideoUrl:', this.videoService.currentVideoUrl());
   }
 
 
@@ -62,6 +59,7 @@ export class VideoOfferComponent implements OnInit {
     this.videoService.setCurrentVideoDescription(video['description']);
     this.videoService.setCurrentThumbnail(video['thumbnail']);
     this.videoService.setVideoNameFromPath(video['video_file_url']);
+    this.videoService.setCurrentVideoFormat('360p');
     if (this.screenService.isMobile()) {
       this.videoService.setShowMobileDescription(true);
     }

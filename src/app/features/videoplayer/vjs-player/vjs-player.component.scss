@@ -243,16 +243,24 @@ input[type="range"] {
     @extend .dF-column-jc-flex-end;
     position: absolute;
     bottom: 50px;
-    left: -21px;
-    gap: 8px;
+    left: -25px;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 16px;
     border-radius: 16px;
 
     > span {
+        width: 100%;
         font-size: 18px;
         line-height: 1;
+        padding: 8px;
+        text-align: center;
+        border-radius: 8px;
     }
+}
+
+.highlighted-format {
+    background-color: black;
+    color: color.$logo-purple;
 }
 
 .mobile-controls {
