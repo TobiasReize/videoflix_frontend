@@ -4,6 +4,7 @@ import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 import { VideoService } from '../../../services/video-service/video.service';
 import { config } from '../../../shared/config';
+import { ToastMsgService } from '../../../services/toast-msg-service/toast-msg.service';
 
 @Component({
   selector: 'app-vjs-player',
@@ -15,6 +16,7 @@ import { config } from '../../../shared/config';
 export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   videoService = inject(VideoService);
+  toastMsgService = inject(ToastMsgService);
   player!: Player;
   isFullscreen: boolean = false;
   videoDuration: string = "00:00:00";
@@ -155,7 +157,12 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   selectVideoFormat(format: string) {
     this.videoService.setCurrentVideoFormat(format);
-    this.player.src({type: 'video/mp4', src: this.videoService.currentVideoUrl()});    
+    this.player.src({type: 'video/mp4', src: this.videoService.currentVideoUrl()});
+    this.showVideoFormat = false;
+    this.toastMsgService.showToastMsg('ok', 'Video format changed to ' + this.videoService.currentVideoFormat() + '.');
+    setTimeout(() => {
+      this.toastMsgService.resetToastMsg();
+    }, 2000);
   }
 
 
