@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 import { VideoService } from '../../../services/video-service/video.service';
@@ -9,7 +10,7 @@ import { ToastMsgComponent } from "../../../shared/toast-msg/toast-msg.component
 @Component({
   selector: 'app-vjs-player',
   standalone: true,
-  imports: [CommonModule, ToastMsgComponent],
+  imports: [CommonModule, ToastMsgComponent, RouterLink],
   templateUrl: './vjs-player.component.html',
   styleUrl: './vjs-player.component.scss',
 })

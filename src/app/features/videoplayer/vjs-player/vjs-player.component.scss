@@ -48,12 +48,16 @@ input[type="range"] {
     @extend .font-style-m5;
 }
 
-.mobile-header-close:hover {
-    cursor: pointer;
+.mobile-header-close {
+    outline: none;
     
-    path {
-        transition: all 150ms ease-in-out;
-        fill: color.$logo-purple
+    &:hover {
+        cursor: pointer;
+        
+        path {
+            transition: all 150ms ease-in-out;
+            fill: color.$logo-purple
+        }
     }
 }
 
@@ -313,6 +317,16 @@ input[type="range"] {
 
             .mobile-format-text {
                 display: block;
+            }
+        }
+
+        .format-overlay {
+            padding: 8px;
+            z-index: 12;
+            
+            > span {
+                font-size: 16px;
+                padding: 6px;
             }
         }
     }
