@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import videojs from 'video.js';
 import Player from 'video.js/dist/types/player';
 import { VideoService } from '../../../services/video-service/video.service';
+import { config } from '../../../shared/config';
 
 @Component({
   selector: 'app-vjs-player',
@@ -18,7 +19,8 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   isFullscreen: boolean = false;
   videoDuration: string = "00:00:00";
   videoProgress: number = 0;
-  showSpeed: boolean = false;
+  videoBuffered: number = 0;
+  showVideoFormat: boolean = false;
   @ViewChild('videoPlayer', {static: true}) videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoContainer') videoContainer!: ElementRef<HTMLElement>;
   @ViewChild('progressBar') progressBar!: ElementRef<HTMLElement>;
@@ -49,6 +51,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
       this.player.on('timeupdate', () => {
         this.videoProgress = ((this.player.currentTime() ?? 0) / (this.player.duration() ?? 0)) * 100;
+        this.videoBuffered = this.player.bufferedPercent() * 100;
         this.videoDuration = this.formatTime(this.player.remainingTime());
       });
 
@@ -70,7 +73,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   togglePlay() {
     this.player.paused() ? this.player.play() : this.player.pause();
-    this.showSpeed = false;
+    this.showVideoFormat = false;
   }
 
 
@@ -140,13 +143,18 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   }
 
 
-  selectSpeed(event: Event, state?: boolean) {
+  showVideoFormatOverlay(event: Event, state?: boolean) {
     if (state != undefined) {
-      this.showSpeed = state;
+      this.showVideoFormat = state;
     } else {
-      this.showSpeed = !this.showSpeed;
+      this.showVideoFormat = !this.showVideoFormat;
     }
     event.stopPropagation();
+  }
+
+
+  selectVideoFormat(format: string) {
+    this.player.src({type: 'video/mp4', src: config.MEDIA_VIDEO_URL + this.videoService.currentVideoName() + format + '.mp4'});
   }
 
 

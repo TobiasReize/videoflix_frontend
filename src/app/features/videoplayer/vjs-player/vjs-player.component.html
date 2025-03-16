@@ -16,10 +16,10 @@
 
     <video (click)="togglePlay()" #videoPlayer class="vjs-custom-style video-js"></video>
 
-    <div class="custom-controls" (click)="selectSpeed($event, false)">
+    <div class="custom-controls" (click)="showVideoFormatOverlay($event, false)">
         <div class="progress-bar">
             <div class="progress-bar-track" #progressBar (click)="setVideoProgress($event)">
-                <div class="progress-bar-track-loaded" [style.width]="videoProgress + '%'"></div>
+                <div class="progress-bar-track-loaded" [style.width]="videoBuffered + '%'"></div>
                 <div class="progress-bar-thumb" [style.left]="videoProgress + '%'"></div>
             </div>
             <div class="progress-time">{{ videoDuration }}</div>
@@ -38,15 +38,15 @@
                 <span>{{ videoService.currentVideoTitle() }}</span>
             </div>
             <div class="controls-right">
-                <div class="video-speed-container">
-                    <img (click)="selectSpeed($event)" class="speed-icon" src="icon/speed.png" alt="speed">
-                    <span class="mobile-speed-text">Speed</span>
-                    @if (showSpeed) {
-                        <div class="speed-overlay" (click)="$event.stopPropagation();">
-                            <span>120p</span>
-                            <span>360p</span>
-                            <span>720p</span>
-                            <span>1080p</span>
+                <div class="video-format-container">
+                    <img (click)="showVideoFormatOverlay($event)" class="format-icon" src="icon/format.png" alt="video-format">
+                    <span class="mobile-format-text">Speed</span>
+                    @if (showVideoFormat) {
+                        <div class="format-overlay" (click)="$event.stopPropagation();">
+                            <span (click)="selectVideoFormat('_120p')">120p</span>
+                            <span (click)="selectVideoFormat('_360p')">360p</span>
+                            <span (click)="selectVideoFormat('_720p')">720p</span>
+                            <span (click)="selectVideoFormat('_1080p')">1080p</span>
                         </div>
                     }
                 </div>

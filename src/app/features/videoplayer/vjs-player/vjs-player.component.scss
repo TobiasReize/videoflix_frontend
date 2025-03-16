@@ -223,12 +223,12 @@ input[type="range"] {
     }
 }
 
-.custom-controls .video-speed-container {
+.custom-controls .video-format-container {
     @extend .dF-row-cc;
     gap: 4px;
     position: relative;
 
-    .mobile-speed-text {
+    .mobile-format-text {
         @extend .font-style-1;
         display: none;
 
@@ -239,7 +239,7 @@ input[type="range"] {
     }
 }
 
-.custom-controls .speed-overlay {
+.custom-controls .format-overlay {
     @extend .dF-column-jc-flex-end;
     position: absolute;
     bottom: 50px;
@@ -298,12 +298,12 @@ input[type="range"] {
                 display: none;
             }
 
-            .speed-icon {
+            .format-icon {
                 height: 32px;
                 width: 32px;                
             }
 
-            .mobile-speed-text {
+            .mobile-format-text {
                 display: block;
             }
         }
