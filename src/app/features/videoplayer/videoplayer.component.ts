@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../shared/header/header.component';
 import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
 import { VideoService } from '../../services/video-service/video.service';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
+import { ApiService } from '../../services/api-service/api.service';
 
 @Component({
   selector: 'app-videoplayer',
@@ -15,6 +16,7 @@ export class VideoplayerComponent implements OnInit {
 
   videoService = inject(VideoService);
   toastMsgService = inject(ToastMsgService);
+  apiService = inject(ApiService);
 
   setUpOptions = {
     aspectRatio: '16:9',
@@ -35,6 +37,7 @@ export class VideoplayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.toastMsgService.resetToastMsg();
+    this.apiService.checkCredentials();
   }
 
 }
