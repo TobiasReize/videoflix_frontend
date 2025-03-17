@@ -8,4 +8,5 @@ export const config = {
     LOGIN_URL: BASE_URL + 'api/auth/login/',
     FORGOT_PASSWORD_URL: BASE_URL + 'api/auth/forgot-password/',
     RESET_PASSWORD_URL: BASE_URL + 'api/auth/reset-password/',
+    USER_PROFILE_URL: BASE_URL + 'api/auth/profile/',
 };

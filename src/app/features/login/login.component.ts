@@ -26,9 +26,7 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
     this.toastMsgService.resetToastMsg();
-    if (this.activeRoute.snapshot.queryParamMap.get('confirmed') === 'true') {
-      this.toastMsgService.showToastMsg('ok', 'Account activated!');
-    }
+    this.checkQueryParam();
     this.checkRememberMe();
   }
 
@@ -45,6 +43,16 @@ export class LoginComponent implements OnInit {
   onSubmit(ngForm: NgForm) {
     this.formService.formSubmit('login', ngForm);
     this.checkbox.nativeElement.checked = false;
+  }
+
+
+  checkQueryParam() {
+    if (this.activeRoute.snapshot.queryParamMap.get('confirmed') === 'true') {
+      this.toastMsgService.showToastMsg('ok', 'Account activated!');
+    }
+    if (this.activeRoute.snapshot.queryParamMap.get('credentials') === 'false') {
+      this.toastMsgService.showToastMsg('error', 'No valid credentials!');
+    }
   }
 
 

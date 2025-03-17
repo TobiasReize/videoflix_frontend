@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { VideoService } from '../../services/video-service/video.service';
@@ -22,11 +22,13 @@ export class VideoOfferComponent implements OnInit {
   videoService = inject(VideoService);
   screenService = inject(ScreenService);
   apiService = inject(ApiService);
+  router = inject(Router);
   videos: Video[] = [];
   videosByGenre: VideoGenre = {};
 
 
   ngOnInit(): void {
+    this.checkCredentials();
     this.apiService.getData(config.VIDEO_URL).subscribe((data: Video[]) => {
       this.videos = data;
       console.log('Videos:', this.videos);
@@ -77,6 +79,14 @@ export class VideoOfferComponent implements OnInit {
       return a.localeCompare(b);
     });
     return genres;
+  }
+
+
+  checkCredentials() {
+    const userID = sessionStorage.getItem('user_id');
+    this.apiService.getData(config.USER_PROFILE_URL + userID).subscribe({
+      error: err => this.router.navigateByUrl('login?credentials=false'), 
+    });
   }
 
 }
