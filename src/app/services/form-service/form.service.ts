@@ -66,7 +66,7 @@ export class FormService {
         this.formSubmitSignup(ngForm);
         break;
       case 'forgot-password':
-        this.formSubmitForgotPassword();
+        this.formSubmitForgotPassword(ngForm);
         break
       case 'reset-password':
         this.formSubmitResetPassword(ngForm);
@@ -114,9 +114,14 @@ export class FormService {
   }
 
 
-  formSubmitForgotPassword() {
-    this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please follow the instructions.');
-    // tbd.
+  formSubmitForgotPassword(ngForm: NgForm) {
+    const payload = {
+      email: ngForm.form.value.email,
+    };
+    this.apiService.postData(config.FORGOT_PASSWORD_URL, payload).subscribe({
+      next: data => this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please follow the instructions.'),
+      error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
+    });
   }
 
 
