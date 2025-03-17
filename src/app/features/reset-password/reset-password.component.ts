@@ -21,14 +21,14 @@ export class ResetPasswordComponent implements OnInit {
     private activeRoute = inject(ActivatedRoute);
     isPasswordVisible: boolean = false;
     isPasswordRepeatVisible: boolean = false;
-    userEmail: string = '';
 
 
     ngOnInit(): void {
       this.toastMsgService.resetToastMsg();
       if (this.activeRoute.snapshot.queryParamMap.get('email')) {
-        this.userEmail = this.activeRoute.snapshot.queryParamMap.get('email') ?? '';
-        console.log('email:', this.userEmail);
+        const userEmail = this.activeRoute.snapshot.queryParamMap.get('email') ?? '';
+        this.formService.setResetEmail(userEmail);
+        // console.log('email:', this.formService.resetEmail());
       }
     }
 

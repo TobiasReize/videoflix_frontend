@@ -13,8 +13,12 @@ export class FormService {
   toastMsgService = inject(ToastMsgService);
   router = inject(Router);
   apiService = inject(ApiService);
+
   private signupEmailSignal = signal<string>('');
   readonly signupEmail = this.signupEmailSignal.asReadonly();
+
+  private resetEmailSignal = signal<string>('');
+  readonly resetEmail = this.resetEmailSignal.asReadonly();
 
 
   constructor() { }
@@ -22,6 +26,11 @@ export class FormService {
 
   setSignupEmail(email: string) {
     this.signupEmailSignal.set(email);
+  }
+
+
+  setResetEmail(email: string) {
+    this.resetEmailSignal.set(email);
   }
 
 
@@ -127,8 +136,15 @@ export class FormService {
 
   formSubmitResetPassword(ngForm: NgForm) {
     if (this.passwordsMatch(ngForm)) {
-      // tbd.
-      this.toastMsgService.setToastMsg('ok', 'Success! Your password has been changed.');
+      const payload = {
+        email: this.resetEmail(),
+        new_password: ngForm.form.value.password,
+        repeated_password: ngForm.form.value.passwordRepeat
+      };
+      this.apiService.postData(config.RESET_PASSWORD_URL, payload).subscribe({
+        next: data => this.toastMsgService.setToastMsg('ok', 'Success! Your password has been changed.'),
+        error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
+      });
     } else {
       this.toastMsgService.setToastMsg('error', 'Passwords don\'t match! Please try again.');
     }
