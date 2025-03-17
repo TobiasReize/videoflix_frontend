@@ -1,8 +1,8 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
-import { FormsModule, NgForm } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 import { FormService } from '../../services/form-service/form.service';
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   isPasswordVisible: boolean = false;
   toastMsgService = inject(ToastMsgService);
   formService = inject(FormService);
+  router = inject(Router);
   private activeRoute = inject(ActivatedRoute);
   @ViewChild('checkbox') checkbox!: ElementRef;
 
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
     if (this.activeRoute.snapshot.queryParamMap.get('confirmed') === 'true') {
       this.toastMsgService.showToastMsg('ok', 'Account activated!');
     }
+    this.checkRememberMe();
   }
 
 
@@ -46,4 +48,9 @@ export class LoginComponent implements OnInit {
   }
 
 
+  checkRememberMe() {
+    if (sessionStorage.getItem('remember_me') == 'true') {
+      this.router.navigateByUrl('video-offer');
+    }
+  }
 }

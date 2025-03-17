@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { VideoService } from '../../services/video-service/video.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class HeaderComponent {
 
   @Input() type: string = '';
   videoService = inject(VideoService);
+  router = inject(Router);
 
 
   constructor(private location: Location) { }
@@ -26,6 +27,17 @@ export class HeaderComponent {
 
   showVideoOffer() {
     this.videoService.setShowMobileDescription(false);
+  }
+
+
+  logout() {
+    if (sessionStorage.getItem('remember_me') == 'true') {
+      this.router.navigateByUrl('');
+    } else {
+      sessionStorage.removeItem('email');
+      sessionStorage.removeItem('user_id');
+      this.router.navigateByUrl('');
+    }
   }
 
 }

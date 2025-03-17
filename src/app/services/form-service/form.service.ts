@@ -81,13 +81,14 @@ export class FormService {
 
 
   formSubmitLogin(ngForm: NgForm) {
+    const rememberMe = ngForm.form.value.checkbox;
     const payload = {
       username: ngForm.form.value.email,
       password: ngForm.form.value.password
     };
     this.apiService.postData(config.LOGIN_URL, payload).subscribe({
       next: data => {
-        this.setCurrentUser(data);
+        this.setCurrentUser(data, rememberMe);
         this.router.navigateByUrl('video-offer');
       },
       error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)), 
@@ -133,7 +134,10 @@ export class FormService {
   }
 
 
-  setCurrentUser(data: any) {
+  setCurrentUser(data: any, rememberMe: any) {
+    if (rememberMe == true) {
+      sessionStorage.setItem('remember_me', 'true');
+    }
     sessionStorage.setItem('email', data.email);
     sessionStorage.setItem('user_id', data.user_id);
   }
