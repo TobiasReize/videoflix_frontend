@@ -28,7 +28,7 @@ export class VideoOfferComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.checkCredentials();
+    this.apiService.checkCredentials();
     this.apiService.getData(config.VIDEO_URL).subscribe((data: Video[]) => {
       this.videos = data;
       console.log('Videos:', this.videos);
@@ -79,14 +79,6 @@ export class VideoOfferComponent implements OnInit {
       return a.localeCompare(b);
     });
     return genres;
-  }
-
-
-  checkCredentials() {
-    const userID = sessionStorage.getItem('user_id');
-    this.apiService.getData(config.USER_PROFILE_URL + userID).subscribe({
-      error: err => this.router.navigateByUrl('login?credentials=false'), 
-    });
   }
 
 }
