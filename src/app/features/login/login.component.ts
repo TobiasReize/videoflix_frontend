@@ -47,10 +47,13 @@ export class LoginComponent implements OnInit {
 
 
   checkQueryParam() {
-    if (this.activeRoute.snapshot.queryParamMap.get('confirmed') === 'true') {
+    if (this.activeRoute.snapshot.queryParamMap.get('confirmed') == 'true') {
       this.toastMsgService.showToastMsg('ok', 'Account activated!');
     }
-    if (this.activeRoute.snapshot.queryParamMap.get('credentials') === 'false') {
+    if (this.activeRoute.snapshot.queryParamMap.get('token') == 'false') {
+      this.toastMsgService.showToastMsg('error', 'No user found!');
+    }
+    if (this.activeRoute.snapshot.queryParamMap.get('credentials') == 'false') {
       this.toastMsgService.showToastMsg('error', 'No valid credentials!');
     }
   }
