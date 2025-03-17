@@ -26,4 +26,11 @@ export class ToastMsgService {
     this.toastMsgSignal.set('');
   }
 
+
+  setToastMsg(state: 'error' | 'ok', msg: string) {
+    setTimeout(() => {
+      this.showToastMsg(state, msg);
+    }, 100);
+  }
+
 }

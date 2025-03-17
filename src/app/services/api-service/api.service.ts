@@ -16,5 +16,10 @@ export class ApiService {
   getData(endpoint: string): Observable<any> {
     return this.http.get<any>(endpoint);
   }
+
+
+  postData(endpoint: string, payload = {}): Observable<any> {
+    return this.http.post<any>(endpoint, payload);
+  }
   
 }

@@ -7,7 +7,7 @@ import { VideoService } from '../../services/video-service/video.service';
 import { ScreenService } from '../../services/screen-service/screen.service';
 import { Video } from '../../interfaces/video.interface';
 import { VideoGenre } from '../../interfaces/video-genre.interface';
-import { ApiService } from '../../services/api-service/api-service';
+import { ApiService } from '../../services/api-service/api.service';
 import { config } from '../../shared/config';
 
 @Component({
