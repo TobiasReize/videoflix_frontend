@@ -7,6 +7,8 @@ import { VideoService } from '../../services/video-service/video.service';
 import { ScreenService } from '../../services/screen-service/screen.service';
 import { Video } from '../../interfaces/video.interface';
 import { VideoGenre } from '../../interfaces/video-genre.interface';
+import { ApiService } from '../../services/api-service/api-service';
+import { config } from '../../shared/config';
 
 @Component({
   selector: 'app-video-offer',
@@ -19,12 +21,13 @@ export class VideoOfferComponent implements OnInit {
 
   videoService = inject(VideoService);
   screenService = inject(ScreenService);
+  apiService = inject(ApiService);
   videos: Video[] = [];
   videosByGenre: VideoGenre = {};
 
 
   ngOnInit(): void {
-    this.videoService.getVideos().subscribe((data: Video[]) => {
+    this.apiService.getData(config.VIDEO_URL).subscribe((data: Video[]) => {
       this.videos = data;
       console.log('Videos:', this.videos);
       this.sortVideos();
