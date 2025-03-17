@@ -98,8 +98,15 @@ export class FormService {
 
   formSubmitSignup(ngForm: NgForm) {
     if (this.passwordsMatch(ngForm)) {
-      // tbd.
-      this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please confirm your e-mail address.');
+      const payload = {
+        email: ngForm.form.value.email,
+        password: ngForm.form.value.password,
+        repeated_password: ngForm.form.value.passwordRepeat
+      };
+      this.apiService.postData(config.REGISTRATION_URL, payload).subscribe({
+        next: data => this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please confirm your e-mail address.'),
+        error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
+      });
     } else {
       this.toastMsgService.setToastMsg('error', 'Passwords don\'t match! Please try again.');
     }
