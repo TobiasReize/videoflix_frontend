@@ -10,9 +10,9 @@ import { config } from '../../shared/config';
 })
 export class FormService {
 
-  toastMsgService = inject(ToastMsgService);
-  router = inject(Router);
-  apiService = inject(ApiService);
+  private toastMsgService = inject(ToastMsgService);
+  private router = inject(Router);
+  private apiService = inject(ApiService);
 
   private signupEmailSignal = signal<string>('');
   readonly signupEmail = this.signupEmailSignal.asReadonly();
@@ -40,7 +40,6 @@ export class FormService {
       console.log('Form:', ngForm.form.value);
       this.selectFormFunction(id, ngForm);
     } else {
-      console.log('Fehler!!!');
       this.selectErrorMsg(id);
       this.signupEmailSignal.set('');
     }

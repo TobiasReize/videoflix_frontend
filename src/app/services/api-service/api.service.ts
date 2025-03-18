@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class ApiService {
 
   private http = inject(HttpClient);
-  router = inject(Router);
+  private router = inject(Router);
 
 
   constructor() { }
