@@ -7,4 +7,36 @@
     min-height: 100svh;
     width: 100%;
     background-color: color.$background-black;
+    position: relative;
+}
+
+.content {
+    max-width: 1920px;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    padding-top: 120px;
+}
+
+h2 {
+    margin-bottom: 24px;
+}
+
+h4 {
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+.source {
+    font-size: 14px;
+    margin-top: 32px;
+}
+
+// ---------- Responsive Design ---------- //
+@media (max-width: 1952px) {
+    .content {
+        padding-left: 16px;
+        padding-right: 16px;
+        max-width: unset;
+    }
 }
