@@ -51,18 +51,16 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
       this.player.volume(0);
+      this.player.currentTime(Number(localStorage.getItem('currentVideoTime')) || 0);
 
       this.player.on('timeupdate', () => {
         this.videoProgress = ((this.player.currentTime() ?? 0) / (this.player.duration() ?? 0)) * 100;
         this.videoBuffered = this.player.bufferedPercent() * 100;
         this.videoDuration = this.formatTime(this.player.remainingTime());
+        this.videoService.setCurrentVideoTime(this.player.currentTime() ?? 0);
       });
 
       this.player.on('volumechange', () => this.getVolumeIcon());
-      
-      this.player.on('ended', () => {
-        videojs.log('Awww...over so soon?!');
-      });
     });
   }
 

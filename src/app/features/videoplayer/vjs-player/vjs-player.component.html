@@ -14,7 +14,9 @@
         </svg>
     </div>
 
-    <video (click)="togglePlay()" #videoPlayer class="vjs-custom-style video-js"></video>
+    <video (click)="togglePlay()" #videoPlayer class="vjs-custom-style video-js">
+        <p>Your browser does not support videos!</p>
+    </video>
 
     <div class="custom-controls" (click)="showVideoFormatOverlay($event, false)">
         <div class="progress-bar">

@@ -64,7 +64,8 @@ export class VideoOfferComponent implements OnInit {
     this.videoService.setCurrentVideoDescription(video['description']);
     this.videoService.setCurrentThumbnail(video['thumbnail']);
     this.videoService.setVideoNameFromPath(video['video_file_url']);
-    this.videoService.setCurrentVideoFormat('360p');
+    this.videoService.setCurrentVideoFormat('720p');
+    this.videoService.setCurrentVideoTime(0);
     if (this.screenService.isMobile()) {
       this.videoService.setShowMobileDescription(true);
     }
