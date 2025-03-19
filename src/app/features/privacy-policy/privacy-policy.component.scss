@@ -7,4 +7,58 @@
     min-height: 100svh;
     width: 100%;
     background-color: color.$background-black;
+    position: relative;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.content {
+    max-width: 1920px;
+    width: 100%;
+    height: 100%;
+    padding-top: 120px;
+    padding-bottom: 50px;
+}
+
+h2 {
+    margin-bottom: 16px;
+}
+
+h3 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+h4 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+h5 {
+    margin-top: 8px;
+}
+
+ul {
+    padding-left: 24px;
+}
+
+.m-btm-8 {
+    margin-bottom: 8px;
+}
+
+.source {
+    font-size: 14px;
+    margin-top: 32px;
+}
+
+// ---------- Responsive Design ---------- //
+@media (max-width: 1952px) {
+    .content {
+        padding-left: 16px;
+        padding-right: 16px;
+        max-width: unset;
+    }
 }

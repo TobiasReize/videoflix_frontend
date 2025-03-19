@@ -8,6 +8,7 @@
     width: 100%;
     background-color: color.$background-black;
     position: relative;
+    overflow-y: auto;
 }
 
 .content {
