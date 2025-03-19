@@ -63,6 +63,13 @@
 }
 
 // ---------- Responsive Design ---------- //
+@media (max-height: 768px) {
+    .content {
+        width: unset;
+        max-width: 500px;
+    }
+}
+
 @media (max-width: 550px) {
     :host {
         bottom: 0;
