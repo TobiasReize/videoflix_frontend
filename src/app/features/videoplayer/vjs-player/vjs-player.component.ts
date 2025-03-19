@@ -35,10 +35,6 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
     muted: boolean,
     playsinline: boolean,
     preload: string,
-    sources: {
-        src: string,
-        type: string,
-    }[],
   };
 
 
@@ -50,6 +46,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.player = videojs(this.videoPlayer.nativeElement, this.options, () => {
+      this.player.src({type: 'video/mp4', src: this.videoService.currentVideoUrl()});
       this.player.volume(0);
       this.player.currentTime(Number(localStorage.getItem('currentVideoTime')) || 0);
 
@@ -157,6 +154,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   selectVideoFormat(format: string) {
     this.videoService.setCurrentVideoFormat(format);
     this.player.src({type: 'video/mp4', src: this.videoService.currentVideoUrl()});
+    this.player.currentTime(Number(localStorage.getItem('currentVideoTime')) || 0);
     this.showVideoFormat = false;
     this.toastMsgService.showToastMsg('ok', 'Video format changed to ' + this.videoService.currentVideoFormat() + '.');
     setTimeout(() => {
