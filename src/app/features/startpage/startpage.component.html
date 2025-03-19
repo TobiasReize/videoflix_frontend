@@ -2,7 +2,7 @@
 
 <div class="content">
     <h2>Movies, TV shows, and more</h2>
-    <p class="description">Enter your e-mail to create or restart your subscription.</p>
+    <p class="description">Enter your E-mail to create or restart your subscription.</p>
     <form (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm" class="input-container">
         <input class="input-style-prim" [(ngModel)]="signUpEmail" type="email" name="email" placeholder="E-mail address" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
         <input class="btn-prim" type="submit" name="submit" value="Sign up >">

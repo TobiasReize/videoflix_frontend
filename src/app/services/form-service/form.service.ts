@@ -50,10 +50,10 @@ export class FormService {
   selectErrorMsg(id: string) {
     switch (true) {
       case id == 'startpage':
-        this.toastMsgService.setToastMsg('error', 'Please enter a valid e-mail address.');
+        this.toastMsgService.setToastMsg('error', 'Please enter a valid E-mail address.');
         break;
       case id == 'login' || id == 'signup':
-        this.toastMsgService.setToastMsg('error', 'Invalid e-mail or password! Please try again.');
+        this.toastMsgService.setToastMsg('error', 'Invalid E-mail or password! Please try again.');
         break;
       default:
         this.toastMsgService.setToastMsg('error', 'An error occurred! Please try again.');
@@ -112,7 +112,7 @@ export class FormService {
         repeated_password: ngForm.form.value.passwordRepeat
       };
       this.apiService.postData(config.REGISTRATION_URL, payload).subscribe({
-        next: data => this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please confirm your e-mail address.'),
+        next: data => this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please confirm your E-mail address.'),
         error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
       });
     } else {
