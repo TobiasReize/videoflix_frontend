@@ -9,6 +9,19 @@
     background-color: color.$background-black;
 }
 
+.vjs-default-skin {
+    cursor: pointer;
+
+    video {
+        object-fit: contain;
+    }
+}
+
+.vjs-default-skin.video-js {
+    font-size: 10px;
+    line-height: 1;
+}
+
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -19,7 +32,7 @@ input[type="range"] {
 .video-container {
     @extend .dF-column-cc;
     width: 100%;
-    height: auto;
+    height: 100%;
     position: relative;
 }
 
@@ -78,6 +91,12 @@ input[type="range"] {
   left: 0;
   width: 100%;
   z-index: 10;
+}
+
+.video-container:fullscreen .vjs-default-skin {
+    video {
+        object-fit: cover;
+    }
 }
 
 .custom-controls .progress-bar {
@@ -292,6 +311,12 @@ input[type="range"] {
 @media (max-width: 1025px) {
     .mobile-header {
         display: flex;
+    }
+
+    .vjs-default-skin {    
+        video {
+            object-fit: cover;
+        }
     }
 
     .custom-controls {

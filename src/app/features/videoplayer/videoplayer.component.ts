@@ -21,10 +21,9 @@ export class VideoplayerComponent implements OnInit {
   screenService = inject(ScreenService);
 
   setUpOptions = {
-    aspectRatio: '16:9',
     autoplay: false,
     controls: false,
-    fluid: true,
+    fill: true,
     muted: true,
     playsinline: true,
     preload: 'auto',

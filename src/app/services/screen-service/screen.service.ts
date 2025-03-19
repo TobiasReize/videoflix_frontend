@@ -20,11 +20,12 @@ export class ScreenService {
 
 
   getOptimalVideoFormat(): string {
-    if (this.screenWidth() <= 480) {
+    const maxDimension = Math.max(window.innerWidth, window.innerHeight);
+    if (maxDimension <= 480) {
       return '120p';
-    } else if (this.screenWidth() <= 768) {
+    } else if (maxDimension <= 768) {
       return '360p';
-    } else if (this.screenWidth() <= 1280) {
+    } else if (maxDimension <= 1280) {
       return '720p';
     } else {
       return '1080p';

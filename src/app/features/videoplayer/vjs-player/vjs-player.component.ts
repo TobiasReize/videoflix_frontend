@@ -28,10 +28,9 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
   @ViewChild('videoContainer') videoContainer!: ElementRef<HTMLElement>;
   @ViewChild('progressBar') progressBar!: ElementRef<HTMLElement>;
   @Input() options!: {
-    aspectRatio: string,
     autoplay: boolean,
     controls: boolean,
-    fluid: boolean,
+    fill: boolean,
     muted: boolean,
     playsinline: boolean,
     preload: string,
