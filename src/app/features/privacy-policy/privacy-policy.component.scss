@@ -48,6 +48,10 @@ ul {
 .source {
     font-size: 14px;
     margin-top: 32px;
+
+    > a {
+        font-size: 14px;
+    }
 }
 
 // ---------- Responsive Design ---------- //
