@@ -36,6 +36,7 @@ export class HeaderComponent {
     } else {
       sessionStorage.removeItem('email');
       sessionStorage.removeItem('user_id');
+      sessionStorage.removeItem('token');
       this.router.navigateByUrl('');
     }
   }

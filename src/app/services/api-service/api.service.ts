@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { config } from '../../shared/config';
@@ -16,8 +16,10 @@ export class ApiService {
   constructor() { }
 
 
-  getData(endpoint: string): Observable<any> {
-    return this.http.get<any>(endpoint);
+  getData(endpoint: string, token: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Token ${token}`);
+    return this.http.get<any>(endpoint, { headers });
   }
 
 
@@ -27,8 +29,9 @@ export class ApiService {
 
 
   checkCredentials() {
-    const userID = sessionStorage.getItem('user_id');
-    this.getData(config.USER_PROFILE_URL + userID).subscribe({
+    const userID = sessionStorage.getItem('user_id') || '';
+    const token = sessionStorage.getItem('token') || '';
+    this.getData(config.USER_PROFILE_URL + userID, token).subscribe({
       error: err => this.router.navigateByUrl('login?credentials=false'), 
     });
   }

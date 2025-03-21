@@ -37,7 +37,7 @@ export class FormService {
   formSubmit(id: string, ngForm: NgForm) {
     this.toastMsgService.resetToastMsg();
     if (this.formIsValid(ngForm)) {
-      console.log('Form:', ngForm.form.value);
+      // console.log('Form:', ngForm.form.value);
       this.selectFormFunction(id, ngForm);
     } else {
       this.selectErrorMsg(id);
@@ -167,6 +167,7 @@ export class FormService {
     }
     sessionStorage.setItem('email', data.email);
     sessionStorage.setItem('user_id', data.user_id);
+    sessionStorage.setItem('token', data.token);
   }
 
 

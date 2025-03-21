@@ -29,9 +29,10 @@ export class VideoOfferComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.checkCredentials();
-    this.apiService.getData(config.VIDEO_URL).subscribe((data: Video[]) => {
+    const token = sessionStorage.getItem('token') || '';
+    this.apiService.getData(config.VIDEO_URL, token).subscribe((data: Video[]) => {
       this.videos = data;
-      console.log('Videos:', this.videos);
+      // console.log('Videos:', this.videos);
       this.sortVideos();
       this.setInitialVideo();
     });
