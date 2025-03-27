@@ -24,7 +24,7 @@ export class VideoOfferComponent implements OnInit {
   apiService = inject(ApiService);
   router = inject(Router);
   videos: Video[] = [];
-  videosByGenre: VideoGenre = {};
+  videosByGenre: VideoGenre = {'New on Videoflix': []};
 
 
   ngOnInit(): void {
@@ -32,7 +32,6 @@ export class VideoOfferComponent implements OnInit {
     const token = sessionStorage.getItem('token') || '';
     this.apiService.getData(config.VIDEO_URL, token).subscribe((data: Video[]) => {
       this.videos = data;
-      // console.log('Videos:', this.videos);
       this.sortVideos();
       this.setInitialVideo();
     });
@@ -40,8 +39,9 @@ export class VideoOfferComponent implements OnInit {
 
 
   sortVideos() {
-    this.videosByGenre = {};
+    this.videosByGenre = {'New on Videoflix': []};
     this.videos.forEach((video) => {
+      this.checkNewVideos(video);
       video.genres.forEach((genre) => {
         if (!this.videosByGenre[genre]) {
           this.videosByGenre[genre] = [];
@@ -49,6 +49,16 @@ export class VideoOfferComponent implements OnInit {
         this.videosByGenre[genre].push(video);
       });
     });
+  }
+
+
+  checkNewVideos(video: Video) {
+    const createdDate = new Date(video.created_at).getTime();
+    const now = Date.now();
+    const monthInMs = 30 * 24 * 60 * 60 * 1000;
+    if (now - createdDate < monthInMs) {
+      this.videosByGenre['New on Videoflix'].push(video);
+    }
   }
 
 
