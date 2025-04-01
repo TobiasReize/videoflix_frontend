@@ -1,4 +1,4 @@
-const BASE_URL: string = 'http://videoflix-backend.tobias-reize.de/';
+const BASE_URL: string = 'https://videoflix-backend.tobias-reize.de/';
 
 export const config = {
     BASE_URL: BASE_URL,
