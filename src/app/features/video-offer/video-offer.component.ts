@@ -8,7 +8,7 @@ import { ScreenService } from '../../services/screen-service/screen.service';
 import { Video } from '../../interfaces/video.interface';
 import { VideoGenre } from '../../interfaces/video-genre.interface';
 import { ApiService } from '../../services/api-service/api.service';
-import { config } from '../../shared/config';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-video-offer',
@@ -30,7 +30,7 @@ export class VideoOfferComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.checkCredentials();
     const token = sessionStorage.getItem('token') || '';
-    this.apiService.getData(config.VIDEO_URL, token).subscribe((data: Video[]) => {
+    this.apiService.getData(environment.config.VIDEO_URL, token).subscribe((data: Video[]) => {
       this.videos = data;
       this.sortVideos();
       this.setInitialVideo();

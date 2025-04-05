@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { config } from '../../shared/config';
+import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class ApiService {
   checkCredentials() {
     const userID = sessionStorage.getItem('user_id') || '';
     const token = sessionStorage.getItem('token') || '';
-    this.getData(config.USER_PROFILE_URL + userID, token).subscribe({
+    this.getData(environment.config.USER_PROFILE_URL + userID, token).subscribe({
       error: err => this.router.navigateByUrl('login?credentials=false'), 
     });
   }

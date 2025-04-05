@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Video } from '../../interfaces/video.interface';
-import { config } from '../../shared/config';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class VideoService {
   private currentVideoTimeSignal = signal<number>(Number(localStorage.getItem('currentVideoTime')) || 0);
   readonly currentVideoTime = this.currentVideoTimeSignal.asReadonly();
 
-  readonly currentVideoUrl = computed<string>(() => config.MEDIA_VIDEO_URL + this.currentVideoName() + '_' + this.currentVideoFormat() + '.mp4');
+  readonly currentVideoUrl = computed<string>(() => environment.config.MEDIA_VIDEO_URL + this.currentVideoName() + '_' + this.currentVideoFormat() + '.mp4');
 
   readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, url("${this.currentThumbnail()}")`);
 
@@ -86,7 +86,7 @@ export class VideoService {
 
 
   getVideos(): Observable<Video[]> {
-    return this.http.get<Video[]>(config.VIDEO_URL);
+    return this.http.get<Video[]>(environment.config.VIDEO_URL);
   }
 
 

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastMsgService } from '../toast-msg-service/toast-msg.service';
 import { ApiService } from '../api-service/api.service';
-import { config } from '../../shared/config';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -94,7 +94,7 @@ export class FormService {
       username: ngForm.form.value.email,
       password: ngForm.form.value.password
     };
-    this.apiService.postData(config.LOGIN_URL, payload).subscribe({
+    this.apiService.postData(environment.config.LOGIN_URL, payload).subscribe({
       next: data => {
         this.setCurrentUser(data, rememberMe);
         this.router.navigateByUrl('video-offer');
@@ -111,7 +111,7 @@ export class FormService {
         password: ngForm.form.value.password,
         repeated_password: ngForm.form.value.passwordRepeat
       };
-      this.apiService.postData(config.REGISTRATION_URL, payload).subscribe({
+      this.apiService.postData(environment.config.REGISTRATION_URL, payload).subscribe({
         next: data => this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please confirm your E-mail address.'),
         error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
       });
@@ -126,7 +126,7 @@ export class FormService {
     const payload = {
       email: ngForm.form.value.email,
     };
-    this.apiService.postData(config.FORGOT_PASSWORD_URL, payload).subscribe({
+    this.apiService.postData(environment.config.FORGOT_PASSWORD_URL, payload).subscribe({
       next: data => this.toastMsgService.setToastMsg('ok', 'E-mail sent! Please follow the instructions.'),
       error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
     });
@@ -140,7 +140,7 @@ export class FormService {
         new_password: ngForm.form.value.password,
         repeated_password: ngForm.form.value.passwordRepeat
       };
-      this.apiService.postData(config.RESET_PASSWORD_URL, payload).subscribe({
+      this.apiService.postData(environment.config.RESET_PASSWORD_URL, payload).subscribe({
         next: data => this.toastMsgService.setToastMsg('ok', 'Success! Your password has been changed.'),
         error: err => this.toastMsgService.setToastMsg('error', this.getErrorMsg(err.error)),
       });
