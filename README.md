@@ -20,7 +20,7 @@ This project is part of the videoflix_backend.
     ng generate environments
     add endpoints in environment.config object
 ```
-(--> path: app - src - environments)<br/>
+(--> path: project - src - environments)<br/>
 (--> files: environment.development.ts and environment.ts)
 
 ## Development server
