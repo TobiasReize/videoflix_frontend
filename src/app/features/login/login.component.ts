@@ -6,6 +6,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 import { FormService } from '../../services/form-service/form.service';
+import { ApiService } from '../../services/api-service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   isPasswordVisible: boolean = false;
   toastMsgService = inject(ToastMsgService);
   formService = inject(FormService);
+  apiService = inject(ApiService);
   router = inject(Router);
   private activeRoute = inject(ActivatedRoute);
   @ViewChild('checkbox') checkbox!: ElementRef;
@@ -43,6 +45,17 @@ export class LoginComponent implements OnInit {
   onSubmit(ngForm: NgForm) {
     this.formService.formSubmit('login', ngForm);
     this.checkbox.nativeElement.checked = false;
+  }
+
+
+  guestLogin() {
+    this.apiService.postGuestData().subscribe({
+      next: data => {
+        this.formService.setCurrentUser(data, false);
+        this.router.navigateByUrl('video-offer');
+      },
+      error: err => this.toastMsgService.setToastMsg('error', 'An error occurred. Please try again.'),
+    });
   }
 
 

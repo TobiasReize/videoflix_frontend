@@ -28,6 +28,15 @@ export class ApiService {
   }
 
 
+  postGuestData(): Observable<any> {
+    const payload = {
+      username: environment.guest.EMAIL,
+      password: environment.guest.PASSWORD
+    };
+    return this.http.post<any>(environment.config.LOGIN_URL, payload);
+  }
+
+
   checkCredentials() {
     const userID = sessionStorage.getItem('user_id') || '';
     const token = sessionStorage.getItem('token') || '';

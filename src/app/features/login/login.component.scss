@@ -59,6 +59,12 @@ h2 {
     height: 12px;
 }
 
+.btn-container {
+    @extend .dF-row-cc;
+    gap: 24px;
+    width: 100%;
+}
+
 .forgot-password {
     @extend .font-style-5;
     color: color.$main-color;
