@@ -1,0 +1,28 @@
+@use '../../../styles/layout';
+@use '../../../styles/color';
+@use '../../../styles/animation';
+
+:host {
+    @extend .dF-row-cc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.5);
+    z-index: 20;
+}
+
+.spinner-container {
+    @extend .dF-row-cc;
+}
+
+.spinner {
+    border: 6px solid transparent;
+    border-left-color: #8903FF;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    @extend .spin;
+}

@@ -37,6 +37,8 @@ export class VideoService {
   private showMobileDescriptionSignal = signal<boolean>(false);
   readonly showMobileDescription = this.showMobileDescriptionSignal.asReadonly();
 
+  private loadingVideosSignal = signal<boolean>(true);
+  readonly loadingVideos = this.loadingVideosSignal.asReadonly();
 
   constructor() { }
 
@@ -76,6 +78,11 @@ export class VideoService {
 
   setShowMobileDescription(state: boolean) {
     this.showMobileDescriptionSignal.set(state);
+  }
+
+
+  setLoadingVideos(state: boolean) {
+    this.loadingVideosSignal.set(state);
   }
 
 

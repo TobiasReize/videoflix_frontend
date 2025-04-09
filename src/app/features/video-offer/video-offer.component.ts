@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from "../../shared/header/header.component";
@@ -9,15 +9,16 @@ import { Video } from '../../interfaces/video.interface';
 import { VideoGenre } from '../../interfaces/video-genre.interface';
 import { ApiService } from '../../services/api-service/api.service';
 import { environment } from '../../../environments/environment';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-video-offer',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule, RouterLink],
+  imports: [HeaderComponent, FooterComponent, CommonModule, RouterLink, LoadingSpinnerComponent],
   templateUrl: './video-offer.component.html',
   styleUrl: './video-offer.component.scss'
 })
-export class VideoOfferComponent implements OnInit {
+export class VideoOfferComponent implements OnInit, AfterViewInit {
 
   videoService = inject(VideoService);
   screenService = inject(ScreenService);
@@ -35,6 +36,11 @@ export class VideoOfferComponent implements OnInit {
       this.sortVideos();
       this.setInitialVideo();
     });
+  }
+
+
+  ngAfterViewInit(): void {
+    this.videoService.setLoadingVideos(false);
   }
 
 
