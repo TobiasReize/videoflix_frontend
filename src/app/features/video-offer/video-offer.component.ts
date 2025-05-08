@@ -69,10 +69,18 @@ export class VideoOfferComponent implements OnInit, AfterViewInit {
 
 
   setInitialVideo() {
-    const newVideos = this.videosByGenre['New on Videoflix'];
-    const randomIndex = Math.floor(Math.random() * newVideos.length);
-    const initialVideo = newVideos[randomIndex];
-    this.setVideoChoice(initialVideo);
+    if (this.videosByGenre['New on Videoflix'].length > 0) {
+      const newVideos = this.videosByGenre['New on Videoflix'];
+      const randomIndex = Math.floor(Math.random() * newVideos.length);
+      const initialVideo = newVideos[randomIndex];
+      this.setVideoChoice(initialVideo);
+    } else {
+      const genres = Object.keys(this.videosByGenre).filter(key => key != 'New on Videoflix');
+      const randomIndex = Math.floor(Math.random() * genres.length);
+      const genre = genres[randomIndex];
+      const initialVideo = this.videosByGenre[genre][0];
+      this.setVideoChoice(initialVideo);
+    }
   }
 
 
