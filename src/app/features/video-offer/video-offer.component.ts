@@ -26,15 +26,14 @@ export class VideoOfferComponent implements OnInit, AfterViewInit {
   router = inject(Router);
   videos: Video[] = [];
   videosByGenre: VideoGenre = {'New on Videoflix': []};
+  backendURL: string = environment.config.BASE_URL;
 
 
   ngOnInit(): void {
-    this.apiService.checkCredentials();
-    const token = sessionStorage.getItem('token') || '';
-    this.apiService.getData(environment.config.VIDEO_URL, token).subscribe((data: Video[]) => {
+    this.apiService.getData(environment.config.VIDEO_URL).subscribe((data: Video[]) => {
       this.videos = data;
       this.sortVideos();
-      this.setInitialVideo();
+      this.setInitialVideo();      
     });
   }
 

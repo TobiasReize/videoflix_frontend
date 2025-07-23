@@ -7,6 +7,7 @@ import { ToastMsgComponent } from '../../shared/toast-msg/toast-msg.component';
 import { ToastMsgService } from '../../services/toast-msg-service/toast-msg.service';
 import { FormService } from '../../services/form-service/form.service';
 import { ApiService } from '../../services/api-service/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -49,9 +50,12 @@ export class LoginComponent implements OnInit {
 
 
   guestLogin() {
-    this.apiService.postGuestData().subscribe({
+    const payload = {
+      email: environment.guest.EMAIL,
+      password: environment.guest.PASSWORD
+    };
+    this.apiService.postData(environment.config.LOGIN_URL, payload).subscribe({
       next: data => {
-        this.formService.setCurrentUser(data, false);
         this.router.navigateByUrl('video-offer');
       },
       error: err => this.toastMsgService.setToastMsg('error', 'An error occurred. Please try again.'),
@@ -63,8 +67,11 @@ export class LoginComponent implements OnInit {
     if (this.activeRoute.snapshot.queryParamMap.get('confirmed') == 'true') {
       this.toastMsgService.showToastMsg('ok', 'Account activated!');
     }
-    if (this.activeRoute.snapshot.queryParamMap.get('token') == 'false') {
-      this.toastMsgService.showToastMsg('error', 'No user found!');
+    if (this.activeRoute.snapshot.queryParamMap.get('token') == 'expired') {
+      this.toastMsgService.showToastMsg('error', 'Token expired, account removed!');
+    }
+    if (this.activeRoute.snapshot.queryParamMap.get('token') == 'invalid') {
+      this.toastMsgService.showToastMsg('error', 'Token invalid!');
     }
     if (this.activeRoute.snapshot.queryParamMap.get('credentials') == 'false') {
       this.toastMsgService.showToastMsg('error', 'No valid credentials!');

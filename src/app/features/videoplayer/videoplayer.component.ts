@@ -32,7 +32,6 @@ export class VideoplayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.toastMsgService.resetToastMsg();
-    this.apiService.checkCredentials();
     this.videoService.setCurrentVideoFormat(this.screenService.getOptimalVideoFormat());
   }
 

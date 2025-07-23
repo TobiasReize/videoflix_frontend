@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Video } from '../../interfaces/video.interface';
+import { computed, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -9,7 +6,6 @@ import { environment } from '../../../environments/environment';
 })
 export class VideoService {
 
-  private http = inject(HttpClient);
   private backgroundStyle: string = 'linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0), rgba(20, 20, 20, 1.0))';
 
   private currentVideoTitleSignal = signal<string>('');
@@ -32,7 +28,7 @@ export class VideoService {
 
   readonly currentVideoUrl = computed<string>(() => environment.config.MEDIA_VIDEO_URL + this.currentVideoName() + '_' + this.currentVideoFormat() + '.mp4');
 
-  readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, url("${this.currentThumbnail()}")`);
+  readonly currentVideoPreview = computed<string>(() => `${this.backgroundStyle}, url(${environment.config.BASE_URL}${this.currentThumbnail()})`);
 
   private showMobileDescriptionSignal = signal<boolean>(false);
   readonly showMobileDescription = this.showMobileDescriptionSignal.asReadonly();
@@ -89,11 +85,6 @@ export class VideoService {
   // Hilfsfunktionen:
   setVideoNameFromPath(video_file_url: string) {
     this.setCurrentVideoName(this.getVideoName(video_file_url));
-  }
-
-
-  getVideos(): Observable<Video[]> {
-    return this.http.get<Video[]>(environment.config.VIDEO_URL);
   }
 
 
